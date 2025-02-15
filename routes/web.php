@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\ingreso_v2;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB2;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FodaController;
 use App\Http\Controllers\PollController;
@@ -21,44 +23,43 @@ use App\Http\Controllers\CostoFijoController;
 use App\Http\Controllers\ConclusionController;
 use App\Http\Controllers\ControladorOperativo;
 use App\Http\Controllers\FormularioController;
-use App\Http\Controllers\ProyeccionController;
 use App\Http\Controllers\ingresosV2Controller;
+use App\Http\Controllers\ProyeccionController;
 use App\Http\Controllers\PublicidadController;
 use App\Http\Controllers\cincoAniosConservador;
 use App\Http\Controllers\ConservadorController;
 use App\Http\Controllers\OrganigramaController;
+use App\Http\Controllers\totalInversionInicial;
 use App\Http\Controllers\estadisticasController;
 use App\Http\Controllers\ModeloCanvasController;
+use App\Http\Controllers\balaneGeneralCincoAnios;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\PlanDeNegocioController;
 use App\Http\Controllers\UsuarioAGrupoController;
 use App\Http\Controllers\CostosVariableController;
 use App\Http\Controllers\OptimistaAnualController;
+
+
 use App\Http\Controllers\PesimistaAnualController;
 use App\Http\Controllers\EstructuraLegalController;
 use App\Http\Controllers\gastosMensualesController;
+
 use App\Http\Controllers\GruposDeTrabajoController;
-
-
+use App\Http\Controllers\inversionInicialController;
 use App\Http\Controllers\CapturarResultadoController;
 use App\Http\Controllers\DescripcionPuestoController;
 use App\Http\Controllers\ImagenCorporativaController;
-
+use App\Http\Controllers\flujoEfectivoAnualController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\balanceGeneralAnualController;
-use App\Http\Controllers\balaneGeneralCincoAnios;
 use App\Http\Controllers\gastosPreoperativosController;
 use App\Http\Controllers\flujoEfectivoMensualController;
+use App\Http\Controllers\ProyeccionCincoAniosController;
 use App\Http\Controllers\CulturaOrganizacionalController;
-use App\Http\Controllers\flujoEfectivoAnualController;
+
+use App\Http\Controllers\proyeccionsueldoanualcontroller;
 use App\Http\Controllers\flujoEfectivoCincoAniosController;
 use App\Http\Controllers\gastos_articulos_ventasController;
-use App\Http\Controllers\inversionInicialController;
-use App\Http\Controllers\totalInversionInicial;
-use App\Http\Controllers\proyeccionsueldoanualcontroller;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\DB2;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,12 +123,6 @@ Route::middleware('auth')->group(function () {
             'plan_de_negocio.flujoEfectivoCincoAnios' => flujoEfectivoCincoAniosController::class,
             'plan_de_negocio.inversionInicial' => inversionInicialController::class,
             'plan_de_negocio.totalInversion' => totalInversionInicial::class,
-        ]);
-    });
-
-    Route::group(['middleware' => 'admin'], function() {
-            'plan_de_negocio.proyeccionOptimistaCincoAnios' => cincoAniosOptimista::class,
-
             'plan_de_negocio.organigramas' => OrganigramaController::class,
             'plan_de_negocio.descripciones' => DescripcionPuestoController::class,
             'plan_de_negocio.proyecciones' => ProyeccionController::class,
@@ -141,22 +136,6 @@ Route::middleware('auth')->group(function () {
             ->name('plan_de_negocio.proyecciones.resumen');
     });
 
-
-
-
-    // Route::get('/api/sueldos', function () {
-    //     // Obtener los sueldos totales mensuales
-    //     $sueldosMensuales = DB::table('sueldo_anual')->pluck('sueldo_total_por_mes');
-
-    //     // Obtener los sueldos totales anuales
-    //     $sueldosAnuales = DB::table('proyeccion_cinco_anos')->pluck('sueldo_total_anual');
-
-    //     // Retornar ambos conjuntos de sueldos en un único array
-    //     return response()->json([
-    //         'sueldos_mensuales' => $sueldosMensuales,
-    //         'sueldos_anuales' => $sueldosAnuales
-    //     ]);
-    // });
 
 
     //Route::resource('organigramas', OrganigramaController::class);
