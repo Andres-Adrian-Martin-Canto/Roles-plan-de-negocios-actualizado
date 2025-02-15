@@ -134,13 +134,9 @@ Route::middleware('auth')->group(function () {
         ]);
         Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
             ->name('plan_de_negocio.proyecciones.resumen');
+        //Route::resource('organigramas', OrganigramaController::class);
+        Route::get('organigramas/{organigrama}/download', [OrganigramaController::class, 'download'])->name('organigramas.download');
     });
-
-
-
-    //Route::resource('organigramas', OrganigramaController::class);
-    Route::get('organigramas/{organigrama}/download', [OrganigramaController::class, 'download'])->name('organigramas.download');
-
 
 
 
