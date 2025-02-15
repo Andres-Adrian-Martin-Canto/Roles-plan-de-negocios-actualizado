@@ -248,8 +248,7 @@
 
             {{-- TODO: PLAN FINANCIERO --}}
             <div
-                class="flex justify-between"
-                >
+                class="flex justify-between">
                 <!-- Button -->
                 <a href="{{ route($user_route.'plan_de_negocio.gastoPreoperativo.index', [$plan_de_negocio]) }}" class="flex items-center justify-between gap-2 w-full rounded-md px-4 py-2.5 text-left hover:bg-slate-800 hover:dark:bg-gray-600 dark:bg-gray-700 disabled:text-gray-500 flex mt-4">
                     <div class="flex">
@@ -261,6 +260,23 @@
                     </div>
                 </a>
             </div>
+              <!-- Button de recursos humanos -->
+            <div
+            class="flex justify-between">
+            <!-- Button -->
+            <a href="{{ route($user_route.'plan_de_negocio.descripciones.index', [$plan_de_negocio]) }}" class="flex items-center justify-between gap-2 w-full rounded-md px-4 py-2.5 text-left hover:bg-slate-800 hover:dark:bg-gray-600 dark:bg-gray-700 disabled:text-gray-500 flex mt-4">
+                <div class="flex">
+                    <svg class="mr-4" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#cfcfcf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/></svg>
+                    <p class="text-left">Recursos Humanos</p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#b8b8b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </a>
+        </div>
+
+
+             
         </aside>
     </div>
 </div>

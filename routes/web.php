@@ -12,17 +12,21 @@ use App\Http\Controllers\EstudioController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConceptoController;
+use App\Http\Controllers\ControladorTactico;
 use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\cincoAniosOptimista;
 use App\Http\Controllers\cincoAniosPesimista;
 use App\Http\Controllers\CostoFijoController;
 use App\Http\Controllers\ConclusionController;
+use App\Http\Controllers\ControladorOperativo;
 use App\Http\Controllers\FormularioController;
+use App\Http\Controllers\ProyeccionController;
 use App\Http\Controllers\ingresosV2Controller;
 use App\Http\Controllers\PublicidadController;
 use App\Http\Controllers\cincoAniosConservador;
 use App\Http\Controllers\ConservadorController;
+use App\Http\Controllers\OrganigramaController;
 use App\Http\Controllers\estadisticasController;
 use App\Http\Controllers\ModeloCanvasController;
 use App\Http\Controllers\GeneralidadesController;
@@ -34,8 +38,12 @@ use App\Http\Controllers\PesimistaAnualController;
 use App\Http\Controllers\EstructuraLegalController;
 use App\Http\Controllers\gastosMensualesController;
 use App\Http\Controllers\GruposDeTrabajoController;
+
+
 use App\Http\Controllers\CapturarResultadoController;
+use App\Http\Controllers\DescripcionPuestoController;
 use App\Http\Controllers\ImagenCorporativaController;
+
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\balanceGeneralAnualController;
 use App\Http\Controllers\balaneGeneralCincoAnios;
@@ -47,6 +55,10 @@ use App\Http\Controllers\flujoEfectivoCincoAniosController;
 use App\Http\Controllers\gastos_articulos_ventasController;
 use App\Http\Controllers\inversionInicialController;
 use App\Http\Controllers\totalInversionInicial;
+use App\Http\Controllers\proyeccionsueldoanualcontroller;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB2;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/plan_de_negocio/{plan_de_negocio}/estudio/{estudio}/pdf', [EstudioController::class, 'pdf'])->name('pdf');
 
-    Route::group(['middleware' => 'disciple'], function() {
+    Route::group(['middleware' => 'disciple'], function () {
         Route::resources([
             'plan_de_negocio' => PlanDeNegocioController::class,
             'plan_de_negocio.generalidades' => GeneralidadesController::class,
@@ -114,6 +126,46 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['middleware' => 'admin'], function() {
+            'plan_de_negocio.proyeccionOptimistaCincoAnios' => cincoAniosOptimista::class,
+
+            'plan_de_negocio.organigramas' => OrganigramaController::class,
+            'plan_de_negocio.descripciones' => DescripcionPuestoController::class,
+            'plan_de_negocio.proyecciones' => ProyeccionController::class,
+            'plan_de_negocio.operativo' => ControladorOperativo::class,
+            'plan_de_negocio.tactico' => ControladorTactico::class,
+            'plan_de_negocio.proyeccionsueldoanual' => proyeccionsueldoanualcontroller::class,
+            'plan_de_negocio.proyeccionsueldocincoanios' => ProyeccionCincoAniosController::class
+
+        ]);
+        Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
+            ->name('plan_de_negocio.proyecciones.resumen');
+    });
+
+
+
+
+    // Route::get('/api/sueldos', function () {
+    //     // Obtener los sueldos totales mensuales
+    //     $sueldosMensuales = DB::table('sueldo_anual')->pluck('sueldo_total_por_mes');
+
+    //     // Obtener los sueldos totales anuales
+    //     $sueldosAnuales = DB::table('proyeccion_cinco_anos')->pluck('sueldo_total_anual');
+
+    //     // Retornar ambos conjuntos de sueldos en un único array
+    //     return response()->json([
+    //         'sueldos_mensuales' => $sueldosMensuales,
+    //         'sueldos_anuales' => $sueldosAnuales
+    //     ]);
+    // });
+
+
+    //Route::resource('organigramas', OrganigramaController::class);
+    Route::get('organigramas/{organigrama}/download', [OrganigramaController::class, 'download'])->name('organigramas.download');
+
+
+
+
+    Route::group(['middleware' => 'admin'], function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
         Route::get('/admin_grupos_de_trabajo/todos', [GruposDeTrabajoController::class, 'index'])->name('grupos_admin');
@@ -147,7 +199,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('admin_plan_de_negocio.estudio.capturar_resultado', CapturarResultadoController::class)->parameters(['admin_plan_de_negocio' => 'plan_de_negocio']);
     });
 
-    Route::group(['middleware' => 'adviser'], function() {
+    Route::group(['middleware' => 'adviser'], function () {
         Route::resource('grupos_de_trabajo', GruposDeTrabajoController::class)->except(['update', 'destroy', 'show', 'edit']);
         Route::get('/grupos_de_trabajo/show/{grupo}/{usuario?}', [GruposDeTrabajoController::class, 'show'])->name('grupo.show');
         Route::patch('/grupos_de_trabajo/{grupo}/{usuario}', [GruposDeTrabajoController::class, 'update'])->name('grupo.update');
@@ -178,4 +230,4 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
