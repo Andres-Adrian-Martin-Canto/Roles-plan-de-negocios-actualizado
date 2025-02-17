@@ -1,0 +1,43 @@
+/* Estilos para la tabla */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.modern-table th,
+.modern-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.modern-table th {
+    background-color: #1F2937; /* Color de fondo de encabezado */
+    color: #fff; /* Color del texto de encabezado */
+}
+
+/* Estilos para las filas pares e impares */
+.even-row {
+    background-color: #ffffff; /* Color de fondo para filas pares */
+}
+
+.odd-row {
+    background-color: #f2f2f2; /* Nuevo color de fondo para filas impares */
+}
+
+/* Estilos para el botón de borrar */
+.delete-button {
+    background-color: #e74c3c; /* Color rojo para el botón de borrar */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #c0392b; /* Color rojo más oscuro al pasar el ratón */
+}
+
