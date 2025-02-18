@@ -21,9 +21,9 @@ class ControladorTactico extends Controller
         ->select('id', 'unidad_administrativa')
         ->get();
         return view('descripciones.tactico', ['descripcionesEstrategicos'=>$descripcionesEstrategicos, 'plan_de_negocio'=>$plan_de_negocio, 'operativos'=>$operativos]);
-        
+
     }
-    
+
 
     /**
      * Show the form for creating a new resource.

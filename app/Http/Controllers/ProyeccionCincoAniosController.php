@@ -13,7 +13,7 @@ class ProyeccionCincoAniosController extends Controller
      */
     public function index(Plan_de_negocio $plan_de_negocio)
     {
-        $proyeccionmensual = $plan_de_negocio->proyecciondesueldomensual; 
+        $proyeccionmensual = $plan_de_negocio->proyecciondesueldomensual;
         if ($proyeccionmensual->first()->proyecciondesueldoanual->isEmpty()) {
             return redirect()->back()->with('mensaje', 'No se pueden ingresar hasta guardar los de un año.');
         }

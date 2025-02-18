@@ -38,5 +38,5 @@ class DescripcionPuesto extends Model
         return $this->hasOne(Proyeccion::class,'descripcion_de_puesto_id');
 
     }
-  
+
 }

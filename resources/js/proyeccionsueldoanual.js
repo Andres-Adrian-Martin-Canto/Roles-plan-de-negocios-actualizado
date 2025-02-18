@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var filaResultado = document.getElementById("totales");
     var columnaResultado = filaResultado.children;
     asignaciónResultadoFila(columnaResultado, arraydatos);
-   
+
     function agregarEventInputs(input) {
         input.addEventListener("blur", function () {
             let columnaTd = input.closest('td');
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 actualizarTotal();
                 alert("No se permite Vacio")
             }
-            
+
         });
     }
     actualizarTotal(); // Llamar a la función para actualizar el total
@@ -58,25 +58,25 @@ document.addEventListener("DOMContentLoaded", function () {
         let filaTotales = document.getElementById("totales");
         // Obtener todas las celdas de la fila
         let celdasTotales = filaTotales.querySelectorAll('th');
-        
+
         // Inicializar una variable para el total
         let totalGeneral = 0;
-    
+
         // Recorrer las celdas (excepto la primera celda que contiene el texto "Total Sueldos")
         for (let i = 1; i < celdasTotales.length; i++) {
             let valor = parseFloat(celdasTotales[i].innerText.replace('$', '').replace(',', ''));
-    
+
             // Asegurarse de que el valor no sea NaN
             if (!isNaN(valor)) {
                 totalGeneral += valor;
             }
         }
-    
+
         // Actualizar la celda con el total
         let celdaTotal = document.getElementById("total-general");
         celdaTotal.innerText = `$${totalGeneral.toFixed(2)}`;
     }
-    
+
     function asignaciónResultadoFila(columnasFila, estructuraBody) {
         // Obtengo las llaves del diccionario
         let filaResultado = document.getElementsByTagName("tfoot");
@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
             columnasFila[indexColumna + 1].innerHTML = '$' + sumaResultado.toFixed(2);
         } // Fin del for de columnas.
     } // Fin de la función asignar valores en la fila resultado
-    
     let boton = document.getElementById("botonguardar");
     boton.addEventListener("click", function () {
         let ruta = this.getAttribute("ruta");
@@ -116,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarMensajeError("Ocurrió un error inesperado.");
         });
     });
-    
     // Función para mostrar mensaje de éxito
     function mostrarMensajeExito(message, refresh = false) {
         const messageDialog = document.createElement('div');
@@ -200,5 +198,4 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.removeChild(messageDialog);
         });
     }
-    
 });

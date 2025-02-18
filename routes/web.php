@@ -9,6 +9,7 @@ use App\Http\Controllers\PollController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Models\gasto_de_articulo_de_venta;
+use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\AdviserController;
 use App\Http\Controllers\EstudioController;
 use App\Http\Controllers\IngresoController;
@@ -33,6 +34,8 @@ use App\Http\Controllers\totalInversionInicial;
 use App\Http\Controllers\estadisticasController;
 use App\Http\Controllers\ModeloCanvasController;
 use App\Http\Controllers\balaneGeneralCincoAnios;
+use App\Http\Controllers\estadisticasController;
+use App\Http\Controllers\ModeloCanvasController;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\PlanDeNegocioController;
 use App\Http\Controllers\UsuarioAGrupoController;
@@ -60,6 +63,26 @@ use App\Http\Controllers\CulturaOrganizacionalController;
 use App\Http\Controllers\proyeccionsueldoanualcontroller;
 use App\Http\Controllers\flujoEfectivoCincoAniosController;
 use App\Http\Controllers\gastos_articulos_ventasController;
+use App\Http\Controllers\PesimistaAnualController;
+use App\Http\Controllers\EstructuraLegalController;
+
+use App\Http\Controllers\GruposDeTrabajoController;
+
+
+use App\Http\Controllers\CapturarResultadoController;
+use App\Http\Controllers\DescripcionPuestoController;
+use App\Http\Controllers\ImagenCorporativaController;
+
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+
+use App\Http\Controllers\ProyeccionCincoAniosController;
+use App\Http\Controllers\CulturaOrganizacionalController;
+use App\Http\Controllers\proyeccionsueldoanualcontroller;
+
+use App\Http\Controllers\NodoController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/plan_de_negocio/{plan_de_negocio}/estudio/{estudio}/pdf', [EstudioController::class, 'pdf'])->name('pdf');
 
     Route::group(['middleware' => 'disciple'], function () {
+    Route::group(['middleware' => 'disciple'], function() {
         Route::resources([
             'plan_de_negocio' => PlanDeNegocioController::class,
             'plan_de_negocio.generalidades' => GeneralidadesController::class,
@@ -141,6 +165,46 @@ Route::middleware('auth')->group(function () {
 
 
     Route::group(['middleware' => 'admin'], function () {
+            'plan_de_negocio.prueba' => PruebaController::class,
+            'plan_de_negocio.organigramas'=>OrganigramaController::class,
+            'plan_de_negocio.descripciones'=>DescripcionPuestoController::class,
+            'plan_de_negocio.proyecciones'=>ProyeccionController::class,
+            'plan_de_negocio.operativo'=>ControladorOperativo::class,
+            'plan_de_negocio.tactico'=>ControladorTactico::class,
+            'plan_de_negocio.proyeccionsueldoanual'=>proyeccionsueldoanualcontroller::class,
+            'plan_de_negocio.proyeccionsueldocincoanios'=>ProyeccionCincoAniosController::class,
+
+
+        ]);
+        Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
+        ->name('plan_de_negocio.proyecciones.resumen');
+    });
+
+
+    Route::prefix('plan-de-negocio/{plan_de_negocio}')->middleware('auth')->group(function () {
+        Route::resource('organigramas', OrganigramaController::class);
+
+        // Ruta para actualizar el nombre del organigrama
+        Route::put('organigramas/{organigrama}/nombre', [OrganigramaController::class, 'updateNombre'])->name('organigramas.updateNombre');
+
+        // Ruta para la vista previa del PDF del organigrama
+        Route::get('organigramas/{organigrama}/preview-pdf', [OrganigramaController::class, 'previewPDF'])->name('organigramas.previewPDF');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/nodos', [NodoController::class, 'index']);
+        Route::get('/nodos/data', [NodoController::class, 'getNodos']);
+        Route::post('/nodos', [NodoController::class, 'store']);
+        Route::delete('/nodos/{id}', [NodoController::class, 'destroy']);
+        Route::match(['GET', 'POST'], '/guardar-organigrama', [NodoController::class, 'guardarOrganigrama']);
+        Route::put('/nodos/{id}', [NodoController::class, 'update']);
+        Route::post('/upload-photo/{id}', [NodoController::class, 'uploadPhoto'])->name('nodos.uploadPhoto');    });
+
+
+
+
+
+    Route::group(['middleware' => 'admin'], function() {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
         Route::get('/admin_grupos_de_trabajo/todos', [GruposDeTrabajoController::class, 'index'])->name('grupos_admin');

@@ -1,0 +1,150 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+#saveBtn, #addChildBtn, #deleteNodeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    padding: 10px 20px;
+    background-color: #ff5a5f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.node.selected {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
+#chart-container .orgchart {
+    width: 100%; 
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+
+
+#addChildBtn {
+    right: 150px;
+    background-color: #007bff;
+}
+
+#deleteNodeBtn {
+    right: 290px;
+    background-color: #dc3545;
+}
+
+#chart-container {
+    width: 97%;
+    height: 90vh; 
+    border: 1px solid #ccc;
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+
+
+.nodo-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.nodo-foto {
+    margin-bottom: 10px;
+}
+
+.nodo-info {
+    text-align: center;
+}
+
+.nodo-puesto {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.nodo-nombre {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.nodo-departamento {
+    font-size: 12px;
+    color: #555;
+}
+
+
+.node {
+    cursor: pointer;
+    width: auto;
+    max-width: 200px; /* Tamaño máximo del nodo */
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 8px; 
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.node .title {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 5px;
+    white-space: normal; /* Permitir que el texto salte de línea */
+}
+
+.node .content {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+    white-space: normal; /* Permitir salto de línea */
+}
+
+.node img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 10px 0;
+    object-fit: cover; /* Ajustar la imagen dentro del nodo */
+}
+
+.node .department {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+    text-align: center;
+    white-space: normal;
+}
+
+.orgchart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.orgchart .node {
+    margin: 20px; /* Espacio entre nodos */
+}

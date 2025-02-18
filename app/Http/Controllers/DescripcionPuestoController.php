@@ -13,7 +13,6 @@ class DescripcionPuestoController extends Controller
      */
     public function index(Plan_de_negocio $plan_de_negocio)
     {
-
         $arraydatos = [];
         // Obtener las descripciones asociadas al plan de negocio ordenadas por nivel
         $descripciones = $plan_de_negocio->descripcionpuesto()
@@ -66,19 +65,19 @@ class DescripcionPuestoController extends Controller
                 'habilidades_fisicas' => 'nullable|string',
                 'habilidades_mentales' => 'nullable|string',
             ]);
-    
+
             if (isset($validatedData['supervisa_a'])) {
                 $validatedData['supervisa_a'] = json_encode($validatedData['supervisa_a']);
             } else {
                 $validatedData['supervisa_a'] = json_encode([]);
             }
-    
+
             // Agregar el ID del plan de negocio
             $validatedData['plan_de_negocio_id'] = $plan_de_negocio->id;
-    
+
             // Crear el registro
             DescripcionPuesto::create($validatedData);
-    
+
             // Redirección con mensaje de éxito
             return redirect()->route('plan_de_negocio.descripciones.index', $plan_de_negocio)
                 ->with('success', 'Descripción de puesto creada exitosamente.');
@@ -89,12 +88,12 @@ class DescripcionPuestoController extends Controller
                     ->withInput()
                     ->with('codigoDuplicado', 'El código ingresado ya existe. Por favor, ingresa un código diferente.');
             }
-    
+
             // Si ocurre otro error de validación, lanzarlo de nuevo
             throw $e;
         }
     }
-    
+
     /**
      * Mostrar el formulario para editar una descripción de puesto existente.
      */
@@ -107,12 +106,10 @@ class DescripcionPuestoController extends Controller
             ->where('nivel', 'estrategico')
             ->select('id', 'unidad_administrativa')
             ->get();
-
         $tactico = $plan_de_negocio->descripcionpuesto()
             ->where('nivel', 'tactico')
             ->select('id', 'unidad_administrativa')
             ->get();
-
         $operativo = $plan_de_negocio->descripcionpuesto()
             ->where('nivel', 'operativo')
             ->select('id', 'unidad_administrativa')

@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
-    
+
     function caculartotaldesueldo() {
         let totaldesueldos = document.getElementById("totaldesueldos");
         let total = 0;

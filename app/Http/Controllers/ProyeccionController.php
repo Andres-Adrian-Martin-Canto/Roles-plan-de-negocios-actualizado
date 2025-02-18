@@ -36,7 +36,7 @@ class ProyeccionController extends Controller
             array_push($arraydatos, [$value->id, $value->nombre_puesto, $value->numero_plaza, ($value->sueldomensual)
                 ? $value->sueldomensual->sueldo : $value->salario_maximo, ($value->sueldomensual) ? $value->sueldomensual->id : 0]);
         }
-        
+
         $ruta = route('plan_de_negocio.proyecciones.store', $plan_de_negocio);
 
         return view('proyecciones.index', compact('arraydatos', 'totaldelossueldos', 'plan_de_negocio', 'ruta', 'haydatosanules'));
@@ -67,7 +67,6 @@ class ProyeccionController extends Controller
                     'total' => $value[4]
                 ]
             );
-           
         }
     }
 
@@ -98,19 +97,19 @@ class ProyeccionController extends Controller
         // Obtener todas las proyecciones y calcular los totales
         // dd(count($plan_de_negocio->proyecciondesueldomensual));
         $sueldos = $plan_de_negocio->proyecciondesueldomensual;
-        
+
         if (count($plan_de_negocio->descripcionpuesto) === 0) {
             return redirect()->back()->with('mensaje', 'No se pueden ingresar hasta que se guarden los datos de sueldo.');
         }
         if (count($plan_de_negocio->descripcionpuesto) > count($sueldos)) {
             return redirect()->back()->with('mensaje', 'No se pueden ingresar hasta que se guarden los datos de sueldo.');
         }
-        
+
         $totalmensual = 0;
         $totalanual= 0;
         $totalcincoanios= 0;
         foreach ($sueldos as $value) {
-       
+
             $datosanual = proyecciondesueldoanual::where('proyección_de_sueldos', $value->id)->get();
             $datoscincoanios = ProyeccionCincoAnios::where('proyección_de_sueldos', $value->id)->get();
             foreach ($datosanual as $anual) {
@@ -120,10 +119,10 @@ class ProyeccionController extends Controller
                 $totalcincoanios += $cincoanios->sueldo_total_anual;
             }
             $totalmensual += $value->total;
-            
+
         }
         // Pasar los datos a la vista
         return view('proyecciones.resumen', compact('plan_de_negocio', 'totalmensual','totalanual','totalcincoanios'));
     }
-    
+
 }

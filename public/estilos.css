@@ -1,0 +1,347 @@
+
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    position: relative;
+    background: #111827; /* Fondo principal */
+    
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 0px 0px; /* Padding de 5px en arriba y abajo, y 10px en izquierda y derecha */
+    background-color: #1F2937;
+    color: #F8FAFC;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+
+#buttonContainer {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    background-color: rgba(31, 41, 55, 0.9); /* Fondo semitransparente */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+#resetNodesBtn, #addChildBtn, #deleteNodeBtn, #saveDataBtn, #uploadPhotoBtn, #previewBtn{
+    padding: 10px 20px;
+    background-color: #ff5a5f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.node.selected {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
+#chart-container .orgchart {
+    width: 100%; 
+    max-height: 95vh;
+    overflow-y: auto;
+    background: radial-gradient(circle, #89A8B2, #B3C8CF, #89A8B2);
+}
+
+
+
+#addChildBtn {
+    right: 150px;
+    background-color: #007bff;
+}
+
+#deleteNodeBtn {
+    right: 290px;
+    background-color: #dc3545;
+}
+
+
+#chart-container {
+    position: relative; /* Necesario para posicionar elementos absolutos dentro */
+    width: 95%;
+    height: calc(100vh - 60px); /* Altura total menos el header */
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #111827;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.nodo-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.nodo-foto {
+    margin-bottom: 10px;
+}
+
+
+.nodo-info {
+    text-align: center;
+}
+
+.nodo-puesto {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.nodo-nombre {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.nodo-departamento {
+    font-size: 12px;
+    color: #555;
+}
+
+/*Animación */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 3; }
+}
+
+.node {
+    cursor: pointer;
+    width: auto;
+    max-width: 200px; /* Tamaño máximo del nodo */
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #000;
+    border-radius: 8px; 
+    background-color: #c6c6c6;/* Contorno c3b9b9 */	
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    
+
+    
+}
+
+.node:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+.node.selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.node .title {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 5px;
+    white-space: normal; /* Permitir que el texto salte de línea */
+}
+
+.node .content {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+    white-space: normal; /* Permitir salto de línea */
+}
+
+.node img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 10px 0;
+    object-fit: cover; /* Ajustar la imagen dentro del nodo */
+}
+
+.node .department {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 5px;
+    text-align: center;
+    white-space: normal;
+}
+
+.orgchart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.orgchart .node {
+    margin: 0 20px; /* Márgenes: arriba y abajo 0, izquierda y derecha 15px */
+}
+
+/* -------------------- Estilos para el Contenedor de Botones Verticales -------------------- */
+#buttonContainer {
+    position: fixed;
+    top: 18%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#buttonContainer {
+    position: fixed; /* Fijo en la pantalla */
+    top: 240px; /* Ajusta según sea necesario */
+    right: 40px; /* Ajusta según sea necesario */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(31, 41, 55, 0.9); /* Fondo semitransparente */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+
+
+
+
+/* -------------------- Estilos para el Botón Principal -------------------- */
+#toggleButtonsBtn {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#toggleButtonsBtn:hover {
+    background-color: var(--button-bg-hover);
+}
+
+/* -------------------- Estilos para los Botones Desplegables -------------------- */
+.toggleable {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.toggleable button {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 150px;
+}
+
+.toggleable button:hover {
+    background-color: var(--button-bg-hover);
+    transform: translateX(-5px);
+}
+
+.toggleable button i {
+    margin-right: 8px;
+}
+
+@media print {
+    @page {
+        margin: 0;
+        size: 595px 842px; /* A4 en píxeles */
+    }
+
+    html, body {
+        width: 595px;
+        height: 842px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+
+        /* Usar Flexbox para centrar horizontalmente y alinear al inicio verticalmente */
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: flex-start; /* Alinear al inicio verticalmente */
+    }
+
+    /* Evitar cortes en nodos y organigrama */
+    #chart-container, .node {
+        page-break-inside: avoid;
+    }
+
+    /* Ocultar botones y header */
+    #buttonContainer, header {
+        display: none !important;
+    }
+
+    /* Mostrar solo el clon del chart-container */
+    #chart-clone {
+        display: block !important;
+        position: absolute;
+        top: 0;                  /* Alinear al inicio verticalmente */
+        left: 50%;               /* Centrar horizontalmente */
+        transform: translate(-50%, 0%) scale(1); /* Centrar horizontalmente sin desplazar verticalmente */
+        transform-origin: top center;
+        width: auto;             /* Permitir tamaño dinámico */
+        height: auto;
+        overflow: visible;
+        margin: 0;               /* Eliminar márgenes automáticos */
+    }
+
+    /* Asegurar que el contenedor original esté oculto durante la impresión */
+    #chart-container {
+        display: none !important;
+    }
+
+    /* Ajustar márgenes de los nodos para una mejor alineación */
+    .orgchart .node {
+        margin: 0 10px; /* Márgenes ajustados para mejor espaciado */
+    }
+}
+
+
+
+
+
+
+
+
+
+
