@@ -34,19 +34,14 @@ use App\Http\Controllers\totalInversionInicial;
 use App\Http\Controllers\estadisticasController;
 use App\Http\Controllers\ModeloCanvasController;
 use App\Http\Controllers\balaneGeneralCincoAnios;
-use App\Http\Controllers\estadisticasController;
-use App\Http\Controllers\ModeloCanvasController;
 use App\Http\Controllers\GeneralidadesController;
 use App\Http\Controllers\PlanDeNegocioController;
 use App\Http\Controllers\UsuarioAGrupoController;
 use App\Http\Controllers\CostosVariableController;
 use App\Http\Controllers\OptimistaAnualController;
-
-
 use App\Http\Controllers\PesimistaAnualController;
 use App\Http\Controllers\EstructuraLegalController;
 use App\Http\Controllers\gastosMensualesController;
-
 use App\Http\Controllers\GruposDeTrabajoController;
 use App\Http\Controllers\inversionInicialController;
 use App\Http\Controllers\CapturarResultadoController;
@@ -59,26 +54,9 @@ use App\Http\Controllers\gastosPreoperativosController;
 use App\Http\Controllers\flujoEfectivoMensualController;
 use App\Http\Controllers\ProyeccionCincoAniosController;
 use App\Http\Controllers\CulturaOrganizacionalController;
-
 use App\Http\Controllers\proyeccionsueldoanualcontroller;
 use App\Http\Controllers\flujoEfectivoCincoAniosController;
 use App\Http\Controllers\gastos_articulos_ventasController;
-use App\Http\Controllers\PesimistaAnualController;
-use App\Http\Controllers\EstructuraLegalController;
-
-use App\Http\Controllers\GruposDeTrabajoController;
-
-
-use App\Http\Controllers\CapturarResultadoController;
-use App\Http\Controllers\DescripcionPuestoController;
-use App\Http\Controllers\ImagenCorporativaController;
-
-use App\Http\Controllers\Auth\RegisteredUserController;
-
-
-use App\Http\Controllers\ProyeccionCincoAniosController;
-use App\Http\Controllers\CulturaOrganizacionalController;
-use App\Http\Controllers\proyeccionsueldoanualcontroller;
 
 use App\Http\Controllers\NodoController;
 
@@ -109,7 +87,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/plan_de_negocio/{plan_de_negocio}/estudio/{estudio}/pdf', [EstudioController::class, 'pdf'])->name('pdf');
 
-    Route::group(['middleware' => 'disciple'], function () {
     Route::group(['middleware' => 'disciple'], function() {
         Route::resources([
             'plan_de_negocio' => PlanDeNegocioController::class,
@@ -165,19 +142,18 @@ Route::middleware('auth')->group(function () {
 
 
     Route::group(['middleware' => 'admin'], function () {
-            'plan_de_negocio.prueba' => PruebaController::class,
-            'plan_de_negocio.organigramas'=>OrganigramaController::class,
-            'plan_de_negocio.descripciones'=>DescripcionPuestoController::class,
-            'plan_de_negocio.proyecciones'=>ProyeccionController::class,
-            'plan_de_negocio.operativo'=>ControladorOperativo::class,
-            'plan_de_negocio.tactico'=>ControladorTactico::class,
-            'plan_de_negocio.proyeccionsueldoanual'=>proyeccionsueldoanualcontroller::class,
-            'plan_de_negocio.proyeccionsueldocincoanios'=>ProyeccionCincoAniosController::class,
+        Route::resources([
 
-
+            // 'plan_de_negocio.organigramas' => OrganigramaController::class,
+            // 'plan_de_negocio.descripciones' => DescripcionPuestoController::class,
+            'plan_de_negocio.proyecciones' => ProyeccionController::class,
+            'plan_de_negocio.operativo' => ControladorOperativo::class,
+            'plan_de_negocio.tactico' => ControladorTactico::class,
+            'plan_de_negocio.proyeccionsueldoanual' => proyeccionsueldoanualcontroller::class,
+            'plan_de_negocio.proyeccionsueldocincoanios' => ProyeccionCincoAniosController::class,
         ]);
         Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
-        ->name('plan_de_negocio.proyecciones.resumen');
+            ->name('plan_de_negocio.proyecciones.resumen');
     });
 
 
