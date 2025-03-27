@@ -124,5 +124,4 @@ class ProyeccionController extends Controller
         // Pasar los datos a la vista
         return view('proyecciones.resumen', compact('plan_de_negocio', 'totalmensual','totalanual','totalcincoanios'));
     }
-
 }
