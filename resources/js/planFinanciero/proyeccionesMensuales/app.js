@@ -1,6 +1,6 @@
 import { conversionNumbrerString, getPosicionFilaCelda } from "./utils/util";
-import { guardarBD } from "./utils/events";
-import { agregarNuevoElemento, eliminarElemento, statusElementoTabla } from "./store";
+import { eventButonEliminar, guardarBD } from "./utils/events";
+import { agregarNuevoElemento, eliminarElemento } from "./store";
 
 // * Obtener la tabla
 const tabla = document.querySelector('table');
@@ -12,7 +12,8 @@ if (filasTr.length > 1) {
     // * for para obtenmer el valor de cada fila y sumarlo
     for (const element of filasTr) {
         const inputsFila = element.querySelectorAll('input');
-        agregarNuevoElemento([inputsFila[0].value, inputsFila[1].value , inputsFila[2].value, inputsFila[3].value , statusElementoTabla.noModificado]);
+        // * Agregar los valores de la fila en mi store
+        agregarNuevoElemento( inputsFila );
         for (let i = 0; i < inputsFila.length; i++) {
             // * Obtener el valor del input
             const valorInput = inputsFila[i].value;
@@ -41,7 +42,7 @@ tabla.addEventListener('click', (event) => {
     // * Si no es boton entonces no hago nada
     if (event.target.tagName !== 'BUTTON') return;
     // * Mando a llamar la funcion para eliminar el elemento
-    eliminarElemento(event, () => {});
+    eventButonEliminar(event, eliminarElemento);
 });
 
 /**

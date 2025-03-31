@@ -1,6 +1,15 @@
+import { getPosicionFilaCelda } from "./util";
 
-const eventButonEliminar = (event, ) => {
 
+export const eventButonEliminar = (event, eliminarElemento) => {
+    // * Obtengo la posicion de la celda y la fila
+    const posicionFila = getPosicionFilaCelda(event.target).posicionFila;
+    // * Obtengo el tbody
+    const cuerpo = event.target.closest('tbody');
+    // * Eliminar el elemento de la tabla
+    cuerpo.deleteRow(posicionFila);
+    // * Eliminar el elemento de la tabla
+    eliminarElemento(posicionFila);
 };
 
 

@@ -1,6 +1,7 @@
 import { ObjectFila } from "../Elements/Model/ObjectFila";
-import { getPosicionFilaCelda } from "../utils/util";
+import { conversionNumbrerString } from "../utils/util";
 
+export const filaTotalDeTotales = document.querySelector("#totaldeTotales");
 // * Arreglo que contendra mis valores de la fila (ObjectFila)
 export const elementTabla = [];
 export const statusElementoTabla = {
@@ -11,24 +12,24 @@ export const statusElementoTabla = {
 };
 /**
  *
- * @param {Array} Valores del objeto a agregar ObjetoFila
+ *  @param {NodeListOf<HTMLInputElement>} Valores del objeto a agregar ObjetoFila
  */
-export const agregarNuevoElemento = ([valor1,valor2,valor3,valor4,status]) => {
-    elementTabla.push(new ObjectFila([valor1,valor2,valor3,valor4,status]));
-    console.log(elementTabla);
+export const agregarNuevoElemento = ( [ nombreInput, segundoInput, tercerInput, totalInput ] ) => {
+    elementTabla.push(new ObjectFila(nombreInput.value, segundoInput.value , tercerInput.value, totalInput.value, statusElementoTabla.noModificado));
 };
 
 
-
-
-export const eliminarElemento = (event, actualizarTabla) => {
-    // * Obtengo la posicion de la celda y la fila
-    const { posicionCelda, posicionFila } = getPosicionFilaCelda(event.target);
-    // * Obtengo el tbody
-    const cuerpo = event.target.closest('tbody');
-    // * Eliminar el elemento de la tabla
-    cuerpo.deleteRow(posicionFila);
+/**
+ *  TODO: Funcion para eliminar el elemento de la tabla
+ * @param {Number} posicionFila
+ */
+export const eliminarElemento = (posicionFila) => {
+    // Obtengo el elemento de la fila y el total de la fila
+    const totalElementoFila = elementTabla[posicionFila].total;
+    // * Obtener el valor total de la tabla y lo convierto a numero
+    const valorTotalTabla = +filaTotalDeTotales.innerText.split('$')[1];
+    // * Asigno el nuevo valor total de la tabla
+    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + conversionNumbrerString(valorTotalTabla - totalElementoFila);
     // * Eliminar el elemento de la tabla
     elementTabla.splice(posicionFila, 1);
-    // ! Llamar a funcion para actualizar el total de la tabla
-}
+};
