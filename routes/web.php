@@ -140,22 +140,6 @@ Route::middleware('auth')->group(function () {
     Route::get('organigramas/{organigrama}/download', [OrganigramaController::class, 'download'])->name('organigramas.download');
 
 
-    // TODO: NO LO TIENE MOROCCOY
-    // Route::group(['middleware' => 'admin'], function () {
-    //     Route::resources([
-
-    //         // 'plan_de_negocio.organigramas' => OrganigramaController::class,
-    //         // 'plan_de_negocio.descripciones' => DescripcionPuestoController::class,
-    //         'plan_de_negocio.proyecciones' => ProyeccionController::class,
-    //         'plan_de_negocio.operativo' => ControladorOperativo::class,
-    //         'plan_de_negocio.tactico' => ControladorTactico::class,
-    //         'plan_de_negocio.proyeccionsueldoanual' => proyeccionsueldoanualcontroller::class,
-    //         'plan_de_negocio.proyeccionsueldocincoanios' => ProyeccionCincoAniosController::class,
-    //     ]);
-    //     Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
-    //         ->name('plan_de_negocio.proyecciones.resumen');
-    // });
-
 
     Route::prefix('plan-de-negocio/{plan_de_negocio}')->middleware('auth')->group(function () {
         Route::resource('organigramas', OrganigramaController::class);

@@ -1,3 +1,21 @@
+
+/**
+ *  TODO: Función para obtener la posicion de la celda y la fila
+ *  @param {HTMLElement} element
+ *  @returns {Object} Retorna un objeto con la posicion de la celda y la fila
+ */
+export const getPosicionFilaCelda = (element) => {
+    // * Obtengo la posicion de la celda
+    const posicionCelda = element.closest('td').cellIndex;
+    // * Obtengo la posicion de la fila
+    const posicionFila = element.closest('tr').sectionRowIndex;
+    return {
+        posicionCelda,
+        posicionFila
+    };
+}
+
+
 /**
  *  TODO: Función para convertir un número a string con dos decimales
  * @param {Number} numero

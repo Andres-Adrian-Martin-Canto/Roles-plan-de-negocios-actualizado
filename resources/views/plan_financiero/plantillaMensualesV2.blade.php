@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $titulo }}</title>
-     @vite(['resources/css/estilos.css', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/menuIzquierdo', 'resources/js/planFinanciero/proyeccionesMensuales'])
+     @vite(['resources/css/estilos.css', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/menuIzquierdo', 'resources/js/planFinanciero/proyeccionesMensuales/app.js'])
 </head>
 
 <body class="p-0 m-0">
