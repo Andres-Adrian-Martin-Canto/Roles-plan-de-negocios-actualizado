@@ -28,8 +28,10 @@ export const eliminarElemento = (posicionFila) => {
     const totalElementoFila = elementTabla[posicionFila].total;
     // * Obtener el valor total de la tabla y lo convierto a numero
     const valorTotalTabla = +filaTotalDeTotales.innerText.split('$')[1];
+    // Si la resta de la tabla y el total de la fila es menor a 0 entonces le asigno 0
+    const resultadoResta = (valorTotalTabla - totalElementoFila < 0) ? 0 : (valorTotalTabla - totalElementoFila).toFixed(2);
     // * Asigno el nuevo valor total de la tabla
-    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + conversionNumbrerString(valorTotalTabla - totalElementoFila);
+    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + resultadoResta;
     // * Eliminar el elemento de la tabla
     elementTabla.splice(posicionFila, 1);
 };

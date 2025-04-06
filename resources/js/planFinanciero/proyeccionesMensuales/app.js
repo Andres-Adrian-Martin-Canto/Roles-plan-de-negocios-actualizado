@@ -1,33 +1,11 @@
-import { conversionNumbrerString, getPosicionFilaCelda } from "./utils/util";
+import {  getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
-import { agregarNuevoElemento, eliminarElemento } from "./store";
+import { elementTabla, eliminarElemento, filaTotalDeTotales } from "./store";
 
 // * Obtener la tabla
 const tabla = document.querySelector('table');
-// * Variable para saber cuanto me dariá el total de la tabla
-let totalTabla = 0.00;
-// * filasDeTabla
-const filasTr = tabla.tBodies[0].rows;
-if (filasTr.length > 1) {
-    // * for para obtenmer el valor de cada fila y sumarlo
-    for (const element of filasTr) {
-        const inputsFila = element.querySelectorAll('input');
-        // * Agregar los valores de la fila en mi store
-        agregarNuevoElemento( inputsFila );
-        for (let i = 0; i < inputsFila.length; i++) {
-            // * Obtener el valor del input
-            const valorInput = inputsFila[i].value;
-            if (i === 3) {
-                // * Sumo el valor de la fila al total de la tabla
-                totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;
-            }
-        }
-    }
-    // console.log(totalTabla);
-    const filaTotalDeTotales = document.querySelector("#totaldeTotales");
-    // Asignarle el resultado al footer de la tabla.
-    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + conversionNumbrerString(totalTabla);
-}
+// * Iniciar el programa
+inicializarStoreVisualizarTotal(tabla);
 
 
 // * Obtener el boton de guardar

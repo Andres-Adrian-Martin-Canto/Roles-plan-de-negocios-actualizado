@@ -1,6 +1,10 @@
 import { getPosicionFilaCelda } from "./util";
 
-
+/**
+ *  TODO: Evento para el boton de eliminar
+ * @param {EventTarget} event
+ * @param {Function<eliminarElemento>} eliminarElemento
+ */
 export const eventButonEliminar = (event, eliminarElemento) => {
     // * Obtengo la posicion de la celda y la fila
     const posicionFila = getPosicionFilaCelda(event.target).posicionFila;
