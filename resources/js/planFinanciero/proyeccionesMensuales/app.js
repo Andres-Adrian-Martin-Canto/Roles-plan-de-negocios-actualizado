@@ -1,6 +1,6 @@
-import {  getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
+import { getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
-import { elementTabla, eliminarElemento, filaTotalDeTotales } from "./store";
+import { elementTabla, eliminarElemento, filaTotalDeTotales, statusElementoTabla, validarElementoVacioONO } from "./store";
 
 // * Obtener la tabla
 const tabla = document.querySelector('table');
@@ -35,20 +35,49 @@ tabla.addEventListener('change', (event) => {
         // const regex = /^[0-9]+(\.[0-9]{1,2})?$/;
         // * Expresion regular
         const regex = /^[-+]?\d*\.?\d+$/;
+        // * Si no cumple con la expresion regular entonces le aviso que no es un numero
         if (!regex.test(valorInput)) {
             alert("El valor ingresado no es un número");
             return;
         }
-
-    } else {
-
+        // * Asignando el valor al input a la celda correspondiente
+        (posicionCelda !== 1) ? elementTabla[posicionFila].valor2 = +valorInput : elementTabla[posicionFila].valor1 = +valorInput;
+        // * Valor del total anterior
+        const valorTotalAnterior = elementTabla[posicionFila].total;
+        // * Calculo el total de la fila
+        const calculoTotal = (elementTabla[posicionFila].valor2 * elementTabla[posicionFila].valor1).toFixed(2);
+        // * Cambiar el valor del store el total del store
+        elementTabla[posicionFila].total = +calculoTotal;
+        // * obtener el tr de la fila donde esta el input
+        const trElement = event.target.closest('tr');
+        // * Cambiar el valor del input del total
+        trElement.querySelectorAll('input')[3].value = calculoTotal;
+        // * obtener la diferencia entre el total del input actual y el total anterior
+        const diferenciaTotal = calculoTotal - valorTotalAnterior;
+        // * Cambiar el total de la tabla
+        filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + (+filaTotalDeTotales.innerText.split('$')[1] + diferenciaTotal).toFixed(2);
+        // * entra si es igual a cero la celda del input o sea la celda de nombre
+    } else { // !! LOGICA DEL INPUT PARA NOMBRE
+        // * Asignando el valor al input a la celda correspondiente
+        elementTabla[posicionFila].name = valorInput;
+        // * Cambiar el valor del input del total
+        event.target.value = valorInput;
+    } // ! FIN DEL IF ELSE
+    // * Mando a cambiar el estado si le faltan datos o si hay datos entonces se le asignara el status modificado
+    const estaVacio = validarElementoVacioONO(elementTabla[posicionFila]);
+    let status = statusElementoTabla.modificado;
+    // * SI UN VALOR NO ESTA COMPLETO ENTONCES LE DIRE QUE FALTAN DATOS
+    if (estaVacio) {
+        status = statusElementoTabla.faltanDatos;
     }
-    console.log(posicionCelda);
-    // * Lo retorno el valor sin espacios
+    // * Cambiar el status
+    elementTabla[posicionFila].status = status;
+    // * Cambiar el valor del input del total
     event.target.value = valorInput;
-    // * Primero validar si cumple que es un numero
-
-
-    // console.log(posicionFila);
+    // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
+    if (!estaVacio && elementTabla.length - 1 === posicionFila) {
+        // ! LLAMAR FUNCION PARA CREAR UNA NUEVA FILA
+        console.log('Crear nuevo elemento');
+    }
 });
 

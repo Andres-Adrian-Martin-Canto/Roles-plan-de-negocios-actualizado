@@ -9,13 +9,14 @@ export const statusElementoTabla = {
     modificado: 'modificado',
     esEliminado: 'eliminado',
     esNuevo: 'nuevo',
+    faltanDatos: 'faltanDatos',
 };
 /**
  *
  *  @param {NodeListOf<HTMLInputElement>} Valores del objeto a agregar ObjetoFila
  */
-export const agregarNuevoElemento = ( [ nombreInput, segundoInput, tercerInput, totalInput ] ) => {
-    elementTabla.push(new ObjectFila(nombreInput.value, segundoInput.value , tercerInput.value, totalInput.value, statusElementoTabla.noModificado));
+export const agregarNuevoElemento = ([nombreInput, segundoInput, tercerInput, totalInput]) => {
+    elementTabla.push(new ObjectFila(nombreInput.value, segundoInput.value, tercerInput.value, totalInput.value, statusElementoTabla.noModificado));
 };
 
 
@@ -35,3 +36,11 @@ export const eliminarElemento = (posicionFila) => {
     // * Eliminar el elemento de la tabla
     elementTabla.splice(posicionFila, 1);
 };
+
+/**
+ *
+ * @param {Array<ElementStore>} elemento
+ */
+export const validarElementoVacioONO = (elemento) => {
+    return Object.values(elemento).some((valor) => valor === "");
+}
