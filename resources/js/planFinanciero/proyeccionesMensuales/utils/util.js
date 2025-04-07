@@ -20,29 +20,21 @@ export const getPosicionFilaCelda = (element) => {
  *  TODO: Función para inicializar el store y visualizar el total
  *  @param {HTMLTableElement} tabla
  */
-export const inicializarStoreVisualizarTotal = (tabla) =>{
+export const inicializarStoreVisualizarTotal = (tabla) => {
     // * Variable para saber cuanto me dariá el total de la tabla
     let totalTabla = 0.00;
     // * filasDeTabla
     const filasTr = tabla.tBodies[0].rows;
-    if (filasTr.length > 1) {
-        // * for para obtenmer el valor de cada fila y sumarlo
-        for (const element of filasTr) {
-            const inputsFila = element.querySelectorAll('input');
-            // * Agregar los valores de la fila en mi store
-            agregarNuevoElemento( inputsFila );
-            for (let i = 0; i < inputsFila.length; i++) {
-                // * Obtener el valor del input
-                const valorInput = inputsFila[i].value;
-                if (i === 3) {
-                    // * Sumo el valor de la fila al total de la tabla
-                    totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;
-                }
-            }
-        }
-        // Asignarle el resultado al footer de la tabla.
-        filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + conversionNumbrerString(totalTabla);
+    // * for para obtenmer el valor de cada fila y sumarlo
+    for (const element of filasTr) {
+        const inputsFila = element.querySelectorAll('input');
+        // * Agregar los valores de la fila en mi store
+        agregarNuevoElemento(inputsFila);
+        const valorInput = inputsFila[3].value;
+        totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;
     }
+    // Asignarle el resultado al footer de la tabla.
+    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + conversionNumbrerString(totalTabla);
 };
 
 
