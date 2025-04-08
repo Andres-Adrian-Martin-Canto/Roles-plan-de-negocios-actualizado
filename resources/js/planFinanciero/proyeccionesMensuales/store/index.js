@@ -13,7 +13,7 @@ export const statusElementoTabla = {
     faltanDatos: 'faltanDatos',
 };
 /**
- *
+ *  TODO: Funcion para agregar un nuevo elemento a la tabla
  *  @param {NodeListOf<HTMLInputElement>} Valores del objeto a agregar ObjetoFila
  */
 export const agregarNuevoElemento = ([nombreInput, segundoInput, tercerInput, totalInput]) => {
