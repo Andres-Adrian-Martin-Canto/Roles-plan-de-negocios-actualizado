@@ -43,7 +43,7 @@ export const eliminarElemento = (posicionFila) => {
 };
 
 /**
- *
+ *  TODO: Funcion para validar si el elemento esta vacio
  * @param {Array<ElementStore>} elemento
  */
 export const validarElementoVacioONO = (elemento) => {
