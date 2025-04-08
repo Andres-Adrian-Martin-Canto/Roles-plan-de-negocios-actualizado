@@ -1,4 +1,4 @@
-import { agregarNuevoElemento, filaTotalDeTotales } from "../store";
+import { agregarNuevoElemento, filaTotalDeTotales, statusElementoTabla } from "../store";
 
 /**
  *  TODO: Función para obtener la posicion de la celda y la fila
@@ -29,7 +29,7 @@ export const inicializarStoreVisualizarTotal = (tabla) => {
     for (const element of filasTr) {
         const inputsFila = element.querySelectorAll('input');
         // * Agregar los valores de la fila en mi store
-        agregarNuevoElemento(inputsFila);
+        agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.noModificado);
         const valorInput = inputsFila[3].value;
         totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;
     }
@@ -51,3 +51,29 @@ export const conversionNumbrerString = (numero) => {
     const numeroDecimales = numero.toString().split( '.' )[1].length;
     return (numeroDecimales > 1) ? numero.toString().slice( 0 , posicionPunto + 3) : numero.toFixed(2).toString();
 };
+
+/**
+ *
+ *  TODO: Funcion para crear una nueva fila y un boton para la fila actual.
+ *  @param {HTMLTableRowElement} elementoTr
+ *  @param {Store<storeElementosTabla>} storeElementosTabla
+ *  @param {HTMLTableSectionElement} tbody
+ */
+export const creacionNuevaFilaYBoton = (elementoTr, storeElementosTabla, tbody, status) => {
+    const celdaBoton = elementoTr.insertCell();
+    // * Crear el boton
+    celdaBoton.innerHTML = `<button class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+        >Eliminar
+    </button>`;
+    // * Crear una nueva fila y insertalar en el tbody
+    const nuevaFila = tbody.insertRow();
+    // * Insertando los td y input a la nueva fila
+    nuevaFila.innerHTML = `
+        <td class="border px-4 py-2"><input class="w-full border rounded-sm px-2 py-1" type=text></td>
+        <td class="border px-4 py-2"><input class="w-full border text-right rounded-sm px-2 py-1"type="text"></td>
+        <td class="border px-4 py-2"><input class="w-full border text-right rounded-sm px-2 py-1"type="text"></td>
+        <td class="border px-4 py-2"><input class="w-full border text-right rounded-sm px-2 py-1"type="text" disabled></td>
+        `;
+    // * Agregar nuevo elemento a mi store
+    agregarNuevoElemento('', '', '', '', status);
+}

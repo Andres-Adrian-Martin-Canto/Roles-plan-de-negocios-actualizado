@@ -1,4 +1,4 @@
-import { getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
+import { creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
 import { elementTabla, eliminarElemento, filaTotalDeTotales, statusElementoTabla, validarElementoVacioONO } from "./store";
 
@@ -76,8 +76,10 @@ tabla.addEventListener('change', (event) => {
     event.target.value = valorInput;
     // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
     if (!estaVacio && elementTabla.length - 1 === posicionFila) {
-        // ! LLAMAR FUNCION PARA CREAR UNA NUEVA FILA
-        console.log('Crear nuevo elemento');
+        const elementoTr = event.target.closest('tr');
+        const tbody = elementoTr.closest('tbody');
+        // * Llamo a la función para crear una nueva fila
+        creacionNuevaFilaYBoton(elementoTr, elementTabla, tbody, statusElementoTabla.esNuevo);
     }
 });
 
