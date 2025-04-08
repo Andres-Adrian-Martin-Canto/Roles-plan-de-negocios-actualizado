@@ -77,3 +77,20 @@ export const creacionNuevaFilaYBoton = (elementoTr, storeElementosTabla, tbody, 
     // * Agregar nuevo elemento a mi store
     agregarNuevoElemento('', '', '', '', status);
 }
+
+
+/**
+ *  TODO: Función para activar el boton de guardar
+ * @param {HTMLButtonElement } botonGuardar
+ */
+export const activarBotonGuardar = (botonGuardar) => {
+    // * Cambiar el estado del boton de guardar
+    if (botonGuardar.hasAttribute('disabled')) {
+        // Replaza el fondo por otro.
+        botonGuardar.classList.replace('bg-green-800', 'bg-green-500');
+        // Replaza el color del texto.
+        botonGuardar.classList.replace('text-gray-400', 'text-white');
+        // Activar el boton
+        botonGuardar.removeAttribute('disabled');
+    }
+};

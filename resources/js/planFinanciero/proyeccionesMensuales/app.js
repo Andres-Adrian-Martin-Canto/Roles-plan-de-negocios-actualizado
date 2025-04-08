@@ -1,4 +1,4 @@
-import { creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
+import { activarBotonGuardar, creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
 import { elementTabla, eliminarElemento, filaTotalDeTotales, statusElementoTabla, validarElementoVacioONO } from "./store";
 
@@ -72,6 +72,8 @@ tabla.addEventListener('change', (event) => {
     }
     // * Cambiar el status
     elementTabla[posicionFila].status = status;
+    // * Mandar a cambiar el boton de guardar activado
+    activarBotonGuardar(botonGuardar);
     // * Cambiar el valor del input del total
     event.target.value = valorInput;
     // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
