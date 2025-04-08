@@ -1,5 +1,6 @@
 import { ObjectFila } from "../Elements/Model/ObjectFila";
 import { conversionNumbrerString } from "../utils/util";
+import storeEliminados from './storeEliminados';
 
 export const filaTotalDeTotales = document.querySelector("#totaldeTotales");
 // * Arreglo que contendra mis valores de la fila (ObjectFila)
@@ -34,7 +35,11 @@ export const eliminarElemento = (posicionFila) => {
     // * Asigno el nuevo valor total de la tabla
     filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + resultadoResta;
     // * Eliminar el elemento de la tabla
-    elementTabla.splice(posicionFila, 1);
+    const elementoEliminado = elementTabla.splice(posicionFila, 1);
+    // * Cambiar el estado del elemento a eliminado
+    elementoEliminado[0].status = statusElementoTabla.esEliminado;
+    // * Llamar a funcion para guardar los eliminados en un array
+    storeEliminados.agregarEliminado(elementoEliminado[0]);
 };
 
 /**
