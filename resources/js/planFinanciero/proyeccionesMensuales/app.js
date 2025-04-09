@@ -11,7 +11,7 @@ inicializarStoreVisualizarTotal(tabla);
 // * Obtener el boton de guardar
 const botonGuardar = document.querySelector("#miBoton");
 // * Evento para guardar los datos en la base de datos
-botonGuardar.addEventListener('click', () => guardarBD(botonGuardar));
+botonGuardar.addEventListener('click', () => guardarBD(botonGuardar, elementTabla));
 
 /**
  *  TODO: Evento para el boton de eliminar
