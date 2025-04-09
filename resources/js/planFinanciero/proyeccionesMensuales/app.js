@@ -20,7 +20,7 @@ tabla.addEventListener('click', (event) => {
     // * Si no es boton entonces no hago nada
     if (event.target.tagName !== 'BUTTON') return;
     // * Mando a llamar la funcion para eliminar el elemento
-    eventButonEliminar(event, eliminarElemento);
+    eventButonEliminar(event, eliminarElemento, () => activarBotonGuardar(botonGuardar));
 });
 
 /**

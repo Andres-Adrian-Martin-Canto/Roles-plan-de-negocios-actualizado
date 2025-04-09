@@ -5,8 +5,9 @@ import storeEliminado from "../store/storeEliminados";
  *  TODO: Evento para el boton de eliminar
  * @param {EventTarget} event
  * @param {Function<eliminarElemento>} eliminarElemento
+ * @param {Function<callbackActivarBoton>} callbackActivarBoton
  */
-export const eventButonEliminar = (event, eliminarElemento) => {
+export const eventButonEliminar = (event, eliminarElemento, callbackActivarBoton) => {
     // * Obtengo la posicion de la celda y la fila
     const posicionFila = getPosicionFilaCelda(event.target).posicionFila;
     // * Obtengo el tbody
@@ -15,6 +16,8 @@ export const eventButonEliminar = (event, eliminarElemento) => {
     cuerpo.deleteRow(posicionFila);
     // * Eliminar el elemento de la tabla
     eliminarElemento(posicionFila);
+    // * Cambiar el boton de guardar activado
+    callbackActivarBoton();
 };
 
 
