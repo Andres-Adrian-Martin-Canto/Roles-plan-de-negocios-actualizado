@@ -30,8 +30,11 @@ export const eventButonEliminar = (event, eliminarElemento, callbackActivarBoton
 export const guardarBD = async (botonGuardar, elementTabla) => {
     // * Creo una variable para filtrar los elementos que se van a enviar a la base de datos
     const filtreadoElement = [];
-    // * Quitar el ultimo elemento de la tabla que no tiene datos
-    elementTabla.pop();
+    // * Si el arreglo de elementos es mayor a 1 entonces entrara.
+    if (elementTabla.length > 1){
+        // * Quitar el ultimo elemento de la tabla que no tiene datos
+        elementTabla.pop();
+    }
     // * Recorro el arreglo de elementos y los guardo en el arreglo para la base de datos.
     for (const element of elementTabla) {
         // * Si el elemento tiene el status de faltanDatos entonces marco un error.
