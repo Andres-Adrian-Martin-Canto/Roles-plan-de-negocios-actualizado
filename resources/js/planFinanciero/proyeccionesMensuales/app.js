@@ -1,6 +1,7 @@
 import { activarBotonGuardar, creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
 import { elementTabla, eliminarElemento, filaTotalDeTotales, statusElementoTabla, validarElementoVacioONO } from "./store";
+import { mensajeError, modalError} from "../util/mensaje";
 
 // * Obtener la tabla
 const tabla = document.querySelector('table');
@@ -37,7 +38,9 @@ tabla.addEventListener('change', (event) => {
         const regex = /^[-+]?\d*\.?\d+$/;
         // * Si no cumple con la expresion regular entonces le aviso que no es un numero
         if (!regex.test(valorInput)) {
-            alert("El valor ingresado no es un número");
+            modalError.style.display = 'block';
+            mensajeError.innerText = "El valor ingresado no es un número";
+            // ! Falta cambiar el dato del input y del store
             return;
         }
         // * Asignando el valor al input a la celda correspondiente

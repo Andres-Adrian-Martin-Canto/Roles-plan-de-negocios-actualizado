@@ -1,5 +1,6 @@
 import { getPosicionFilaCelda } from "./util";
 import storeEliminado from "../store/storeEliminados";
+import { mensajeError, modalCorrecto, mensajeCorrecto, modalError} from "../../util/mensaje";
 
 /**
  *  TODO: Evento para el boton de eliminar
@@ -35,7 +36,9 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
     for (const element of elementTabla) {
         // * Si el elemento tiene el status de faltanDatos entonces marco un error.
         if (element.status === 'faltanDatos') {
-            alert('Faltan datos en la fila');
+            // * Muestra el modal de error
+            modalError.style.display = 'block';
+            mensajeError.textContent = 'Faltan datos en una fila';
             return;
         }
         // * Si el elemento tiene diferente a noModificado entonces entra.
@@ -58,6 +61,7 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
     // * Si existen otros datos en los anuales o cinco anios entonces entra.
     if (botonGuardar.getAttribute('informacion') !== '0') {
         // * Mando a preguntar si quiere confirmar y se borren los datos anuales o cinco anios.
+        // ! ESTO ESTA MAL
         // respuestaDeGuardar = await customConfirm('Tienes información en las tablas anuales. Si aceptas, se van a borrar los datos anuales.');
     }
 
@@ -76,14 +80,12 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
             .then((response) => {
                 // * Si se realizo la peticion entonces entra
                 if (response.ok) {
-                    // ! ESTO ESTA MAL
-                    newMessageP.textContent = "Se guardaron los datos correctamente.";
-                    newToastDiv.style.display = 'block';
+                    modalCorrecto.style.display = 'block';
+                    mensajeCorrecto.textContent = 'Se guardaron los datos correctamente.';
                     // * De lo contrario marcara un error.
                 } else {
-                    // ! ESTO ESTA MAL
-                    newMessageP.textContent = "Error al guardar los datos.";
-                    newToastDiv.style.display = 'block';
+                    modalError.style.display = 'block';
+                    mensajeError.textContent = 'Error al guardar los datos.';
                 }
             });
     }
