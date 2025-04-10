@@ -1,6 +1,7 @@
 import { getPosicionFilaCelda } from "./util";
 import storeEliminado from "../store/storeEliminados";
 import { mensajeError, modalCorrecto, mensajeCorrecto, modalError} from "../../util/mensaje";
+import { confirmacionEliminarLosAnuales} from "./confirmacion.mensaje"
 
 /**
  *  TODO: Evento para el boton de eliminar
@@ -64,8 +65,7 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
     // * Si existen otros datos en los anuales o cinco anios entonces entra.
     if (botonGuardar.getAttribute('informacion') !== '0') {
         // * Mando a preguntar si quiere confirmar y se borren los datos anuales o cinco anios.
-        // ! ESTO ESTA MAL
-        // respuestaDeGuardar = await customConfirm('Tienes información en las tablas anuales. Si aceptas, se van a borrar los datos anuales.');
+        respuestaDeGuardar = await confirmacionEliminarLosAnuales('Tienes información en las tablas anuales. Si aceptas, se van a borrar los datos anuales.');
     }
 
     // * Si la respuesta fue si entonces entrara
