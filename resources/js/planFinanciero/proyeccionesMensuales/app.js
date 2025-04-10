@@ -1,4 +1,4 @@
-import { activarBotonGuardar, creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
+import { activarBotonGuardar, calculoFilaYTotalTabla, creacionNuevaFilaYBoton, getPosicionFilaCelda, inicializarStoreVisualizarTotal } from "./utils/util";
 import { eventButonEliminar, guardarBD } from "./utils/events";
 import { elementTabla, eliminarElemento, filaTotalDeTotales, statusElementoTabla, validarElementoVacioONO } from "./store";
 import { mensajeError, modalError} from "../util/mensaje";
@@ -40,31 +40,16 @@ tabla.addEventListener('change', (event) => {
         if (!regex.test(valorInput)) {
             modalError.style.display = 'block';
             mensajeError.innerText = "El valor ingresado no es un número";
-            // ! Falta cambiar el dato del input y del store
+            // * Llamar a la funcion para calcular el total fila y de la tabla
+            calculoFilaYTotalTabla(event,posicionCelda,elementTabla,filaTotalDeTotales, posicionFila, '0');
             return;
         }
-        // * Asignando el valor al input a la celda correspondiente
-        (posicionCelda !== 1) ? elementTabla[posicionFila].valor2 = +valorInput : elementTabla[posicionFila].valor1 = +valorInput;
-        // * Valor del total anterior
-        const valorTotalAnterior = elementTabla[posicionFila].total;
-        // * Calculo el total de la fila
-        const calculoTotal = (elementTabla[posicionFila].valor2 * elementTabla[posicionFila].valor1).toFixed(2);
-        // * Cambiar el valor del store el total del store
-        elementTabla[posicionFila].total = +calculoTotal;
-        // * obtener el tr de la fila donde esta el input
-        const trElement = event.target.closest('tr');
-        // * Cambiar el valor del input del total
-        trElement.querySelectorAll('input')[3].value = calculoTotal;
-        // * obtener la diferencia entre el total del input actual y el total anterior
-        const diferenciaTotal = calculoTotal - valorTotalAnterior;
-        // * Cambiar el total de la tabla
-        filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + (+filaTotalDeTotales.innerText.split('$')[1] + diferenciaTotal).toFixed(2);
+        // * Llamar a la funcion para calcular el total fila y de la tabla
+        calculoFilaYTotalTabla(event,posicionCelda,elementTabla,filaTotalDeTotales, posicionFila, valorInput);
         // * entra si es igual a cero la celda del input o sea la celda de nombre
     } else { // !! LOGICA DEL INPUT PARA NOMBRE
         // * Asignando el valor al input a la celda correspondiente
         elementTabla[posicionFila].name = valorInput;
-        // * Cambiar el valor del input del total
-        event.target.value = valorInput;
     } // ! FIN DEL IF ELSE
     // * Mando a cambiar el estado si le faltan datos o si hay datos entonces se le asignara el status modificado
     const estaVacio = validarElementoVacioONO(elementTabla[posicionFila]);
@@ -77,8 +62,6 @@ tabla.addEventListener('change', (event) => {
     elementTabla[posicionFila].status = status;
     // * Mandar a cambiar el boton de guardar activado
     activarBotonGuardar(botonGuardar);
-    // * Cambiar el valor del input del total
-    event.target.value = valorInput;
     // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
     if (!estaVacio && elementTabla.length - 1 === posicionFila) {
         const elementoTr = event.target.closest('tr');

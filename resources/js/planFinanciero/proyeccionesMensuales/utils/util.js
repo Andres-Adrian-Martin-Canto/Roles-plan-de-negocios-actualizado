@@ -48,8 +48,8 @@ export const conversionNumbrerString = (numero) => {
     if (posicionPunto === -1) {
         return numero.toFixed(2).toString();
     }
-    const numeroDecimales = numero.toString().split( '.' )[1].length;
-    return (numeroDecimales > 1) ? numero.toString().slice( 0 , posicionPunto + 3) : numero.toFixed(2).toString();
+    const numeroDecimales = numero.toString().split('.')[1].length;
+    return (numeroDecimales > 1) ? numero.toString().slice(0, posicionPunto + 3) : numero.toFixed(2).toString();
 };
 
 /**
@@ -94,3 +94,31 @@ export const activarBotonGuardar = (botonGuardar) => {
         botonGuardar.removeAttribute('disabled');
     }
 };
+
+/**
+ *  TODO: Funcion para calcular el total de la fila y el total de la tabla
+ *  @param {Event} event
+ *  @param {Number} posicionCelda
+ *  @param {Array<StoreElement>} elementTabla
+ *  @param {HTMLTableRowElement} filaTotalDeTotales
+ */
+export const calculoFilaYTotalTabla = (event, posicionCelda, elementTabla, filaTotalDeTotales, posicionFila, valorInput) => {
+    // * cambiar el valor del input
+    event.target.value = valorInput;
+    // * Asignando el valor al input a la celda correspondiente
+    (posicionCelda !== 1) ? elementTabla[posicionFila].valor2 = +valorInput : elementTabla[posicionFila].valor1 = +valorInput;
+    // * Valor del total anterior
+    const valorTotalAnterior = elementTabla[posicionFila].total;
+    // * Calculo el total de la fila
+    const calculoTotal = (elementTabla[posicionFila].valor2 * elementTabla[posicionFila].valor1).toFixed(2);
+    // * Cambiar el valor del store el total del store
+    elementTabla[posicionFila].total = +calculoTotal;
+    // * obtener el tr de la fila donde esta el input
+    const trElement = event.target.closest('tr');
+    // * Cambiar el valor del input del total
+    trElement.querySelectorAll('input')[3].value = calculoTotal;
+    // * obtener la diferencia entre el total del input actual y el total anterior
+    const diferenciaTotal = calculoTotal - valorTotalAnterior;
+    // * Cambiar el total de la tabla
+    filaTotalDeTotales.innerText = filaTotalDeTotales.innerText.split('$')[0] + " $" + (+filaTotalDeTotales.innerText.split('$')[1] + diferenciaTotal).toFixed(2);
+}
