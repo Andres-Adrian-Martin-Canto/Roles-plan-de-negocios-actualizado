@@ -31,7 +31,8 @@ export const inicializarStoreVisualizarTotal = (tabla) => {
         const idElemento = element.getAttribute('elId') || '0';
         // * Obtener los inputs de la fila
         const inputsFila = element.querySelectorAll('input');
-        if (filasTr.length === 1) {
+        // * Si solo tiene un valor o si es el ultimo entonces le pone en status como nuevo
+        if (filasTr.length === 1 || filasTr.length === element.sectionRowIndex + 1) {
             // * Agregar los valores de la fila en mi store
             agregarNuevoElemento(idElemento,inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.esNuevo);
         } else {
@@ -83,7 +84,7 @@ export const creacionNuevaFilaYBoton = (elementoTr, storeElementosTabla, tbody, 
         <td class="border px-4 py-2"><input class="w-full border text-right rounded-sm px-2 py-1"type="text" disabled></td>
         `;
     // * Agregar nuevo elemento a mi store
-    agregarNuevoElemento('', '', '', '', status);
+    agregarNuevoElemento('0', '', '', '', '', status);
 }
 
 

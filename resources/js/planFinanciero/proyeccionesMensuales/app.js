@@ -55,6 +55,10 @@ tabla.addEventListener('change', (event) => {
     const estaVacio = validarElementoVacioONO(elementTabla[posicionFila]);
     // * Mandar a cambiar el boton de guardar activado
     activarBotonGuardar(botonGuardar);
+    // * Si el elemento es diferente su status a nuevo entonces lo pone como modificado
+    if (elementTabla[posicionFila].status !== statusElementoTabla.esNuevo) {
+        elementTabla[posicionFila].status = statusElementoTabla.modificado;
+    }
     // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
     if (!estaVacio && elementTabla.length - 1 === posicionFila) {
         const elementoTr = event.target.closest('tr');
