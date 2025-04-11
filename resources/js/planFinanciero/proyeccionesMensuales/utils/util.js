@@ -28,8 +28,13 @@ export const inicializarStoreVisualizarTotal = (tabla) => {
     // * for para obtenmer el valor de cada fila y sumarlo
     for (const element of filasTr) {
         const inputsFila = element.querySelectorAll('input');
-        // * Agregar los valores de la fila en mi store
-        agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.noModificado);
+        if (filasTr.length === 1) {
+            // * Agregar los valores de la fila en mi store
+            agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.esNuevo);
+        } else {
+            // * Agregar los valores de la fila en mi store
+            agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.noModificado);
+        }
         const valorInput = inputsFila[3].value;
         totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;
     }

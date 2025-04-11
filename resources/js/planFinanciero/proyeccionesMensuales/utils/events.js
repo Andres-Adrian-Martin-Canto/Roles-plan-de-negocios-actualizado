@@ -2,6 +2,7 @@ import { getPosicionFilaCelda } from "./util";
 import storeEliminado from "../store/storeEliminados";
 import { mensajeError, modalCorrecto, mensajeCorrecto, modalError} from "../../util/mensaje";
 import { confirmacionEliminarLosAnuales} from "./confirmacion.mensaje"
+import { validarElementoVacioONO } from "../store";
 
 /**
  *  TODO: Evento para el boton de eliminar
@@ -38,8 +39,9 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
     }
     // * Recorro el arreglo de elementos y los guardo en el arreglo para la base de datos.
     for (const element of elementTabla) {
+        const estaVacio = validarElementoVacioONO(element);
         // * Si el elemento tiene el status de faltanDatos entonces marco un error.
-        if (element.status === 'faltanDatos') {
+        if (estaVacio) {
             // * Muestra el modal de error
             modalError.style.display = 'block';
             mensajeError.textContent = 'Faltan datos en una fila';

@@ -53,13 +53,6 @@ tabla.addEventListener('change', (event) => {
     } // ! FIN DEL IF ELSE
     // * Mando a cambiar el estado si le faltan datos o si hay datos entonces se le asignara el status modificado
     const estaVacio = validarElementoVacioONO(elementTabla[posicionFila]);
-    let status = statusElementoTabla.modificado;
-    // * SI UN VALOR NO ESTA COMPLETO ENTONCES LE DIRE QUE FALTAN DATOS
-    if (estaVacio) {
-        status = statusElementoTabla.faltanDatos;
-    }
-    // * Cambiar el status
-    elementTabla[posicionFila].status = status;
     // * Mandar a cambiar el boton de guardar activado
     activarBotonGuardar(botonGuardar);
     // * Valida si es el ultimo y si esta completo entonces mandara a crear un nuevo elemento tr
