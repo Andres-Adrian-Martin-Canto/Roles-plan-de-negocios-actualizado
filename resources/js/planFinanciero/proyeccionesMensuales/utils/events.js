@@ -2,7 +2,7 @@ import { getPosicionFilaCelda } from "./util";
 import storeEliminado from "../store/storeEliminados";
 import { mensajeError, modalCorrecto, mensajeCorrecto, modalError} from "../../util/mensaje";
 import { confirmacionEliminarLosAnuales} from "./confirmacion.mensaje"
-import { validarElementoVacioONO } from "../store";
+import { nElementoComenzo, validarElementoVacioONO } from "../store";
 
 /**
  *  TODO: Evento para el boton de eliminar
@@ -33,7 +33,8 @@ export const guardarBD = async (botonGuardar, elementTabla) => {
     // * Creo una variable para filtrar los elementos que se van a enviar a la base de datos
     const filtreadoElement = [];
     // * Si el arreglo de elementos es mayor a 1 entonces entrara.
-    if (elementTabla.length > 1){
+    // * Si el arreglo de elementos es mayor a 1 o si el contador de elementos que comenzaron es mayor a 1 entonces entra.
+    if (elementTabla.length > 1 || nElementoComenzo > 1){
         // * Quitar el ultimo elemento de la tabla que no tiene datos
         elementTabla.pop();
     }

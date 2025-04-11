@@ -5,6 +5,7 @@ import storeEliminados from './storeEliminados';
 export const filaTotalDeTotales = document.querySelector("#totaldeTotales");
 // * Arreglo que contendra mis valores de la fila (ObjectFila)
 export const elementTabla = [];
+export let nElementoComenzo = 0;
 export const statusElementoTabla = {
     noModificado: 'noModificado',
     modificado: 'modificado',
@@ -23,6 +24,8 @@ export const statusElementoTabla = {
  */
 export const agregarNuevoElemento = (idDataBase,nombreInput, segundoInput, tercerInput, totalInput, status) => {
     elementTabla.push(new ObjectFila(idDataBase,nombreInput, segundoInput, tercerInput, totalInput, status));
+    // * Le sumo uno al contador de elementos que comenzaron
+    nElementoComenzo++;
 };
 
 
