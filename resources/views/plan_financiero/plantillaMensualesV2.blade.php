@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $titulo }}</title>
-     @vite(['resources/css/estilos.css', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/menuIzquierdo', 'resources/js/planFinanciero/proyeccionesMensuales/app.js'])
+    @vite(['resources/css/estilos.css', 'resources/css/app.css', 'resources/js/app.js', 'resources/js/menuIzquierdo', 'resources/js/planFinanciero/proyeccionesMensuales/app.js'])
 </head>
 
 <body class="p-0 m-0">
@@ -78,11 +78,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datos as $dato)
-                            <tr>
-                                @php
-                                    $key = array_keys($dato);
-                                @endphp
+                        @foreach ($datos as $key => $dato)
+                            @php
+                                $key = array_keys($dato);
+                            @endphp
+                            <tr elId="{{ $dato[$key[0]] }}">
                                 <td class="border px-4 py-2"> <input type="text"
                                         class="w-full border rounded-sm px-2 py-1 text-left"
                                         value="{{ $dato[$key[2]] }}">
