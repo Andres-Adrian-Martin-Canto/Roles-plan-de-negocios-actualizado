@@ -27,13 +27,16 @@ export const inicializarStoreVisualizarTotal = (tabla) => {
     const filasTr = tabla.tBodies[0].rows;
     // * for para obtenmer el valor de cada fila y sumarlo
     for (const element of filasTr) {
+        // * Obtener el id que esta en la fila
+        const idElemento = element.getAttribute('elId') || '0';
+        // * Obtener los inputs de la fila
         const inputsFila = element.querySelectorAll('input');
         if (filasTr.length === 1) {
             // * Agregar los valores de la fila en mi store
-            agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.esNuevo);
+            agregarNuevoElemento(idElemento,inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.esNuevo);
         } else {
             // * Agregar los valores de la fila en mi store
-            agregarNuevoElemento(inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.noModificado);
+            agregarNuevoElemento(idElemento,inputsFila[0].value, inputsFila[1].value, inputsFila[2].value, inputsFila[3].value, statusElementoTabla.noModificado);
         }
         const valorInput = inputsFila[3].value;
         totalTabla += (valorInput.trim()) ? (+valorInput) : 0.00;

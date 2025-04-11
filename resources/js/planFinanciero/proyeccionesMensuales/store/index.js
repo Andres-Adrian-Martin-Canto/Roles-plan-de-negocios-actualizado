@@ -16,8 +16,8 @@ export const statusElementoTabla = {
  *  TODO: Funcion para agregar un nuevo elemento a la tabla
  *  @param {NodeListOf<HTMLInputElement>} Valores del objeto a agregar ObjetoFila
  */
-export const agregarNuevoElemento = (nombreInput, segundoInput, tercerInput, totalInput, status) => {
-    elementTabla.push(new ObjectFila(nombreInput, segundoInput, tercerInput, totalInput, status));
+export const agregarNuevoElemento = (idDataBase,nombreInput, segundoInput, tercerInput, totalInput, status) => {
+    elementTabla.push(new ObjectFila(idDataBase,nombreInput, segundoInput, tercerInput, totalInput, status));
 };
 
 
