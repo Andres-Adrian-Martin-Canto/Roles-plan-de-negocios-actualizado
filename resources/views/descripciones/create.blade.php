@@ -66,7 +66,6 @@
                     @csrf
                     <!-- div 1 -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4  justify-center">
-
                         <!-- Nivel Organigrama -->
                         <div class="flex  w-full sm:w-auto">
                             <label for="nivel"
@@ -81,7 +80,6 @@
                                 <option value="Operativo">Operativo</option>
                             </select>
                         </div>
-
                         <script>
                             document.getElementById('nivel').addEventListener('change', function() {
                                 const selectedValue = this.value.toLowerCase();
@@ -96,7 +94,6 @@
                                 }
                             });
                         </script>
-
                         <!-- Código -->
                         <div class="flex w-full sm:w-auto">
                             <label for="codigo"
@@ -120,7 +117,6 @@
                     <!-- div 2 -->
                     <!-- Fila responsiva: Unidad Administrativa, Nombre de Puesto, Otros nombres del puesto -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
-
                         <!-- Unidad Administrativa -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
                             <label for="unidad_administrativa"
@@ -129,10 +125,8 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('unidad_administrativa') }}</textarea>
-
+                                name="unidad_administrativa" id="unidad_administrativa" required>{{ old('unidad_administrativa') }}</textarea>
                         </div>
-
                         <!-- Nombre de Puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
                             <label for="nombre_puesto"
@@ -141,21 +135,18 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('nombre_puesto') }}</textarea>
-
+                                name="nombre_puesto" id="nombre_puesto" required>{{ old('nombre_puesto') }}</textarea>
                         </div>
-
                         <!-- Otros nombres del puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
-                            <label for="jornada_laboral"
+                            <label for="otros_nombres_del_puesto"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Otros nombres del puesto:
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('otros_nombres_del_puesto') }}</textarea>
+                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto"" required>{{ old('otros_nombres_del_puesto') }}</textarea>
                         </div>
-
                     </div>
                     <!-- Fila: Número de Plaza, Jornada Laboral, Otra Jornada -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
@@ -169,7 +160,6 @@
                                 class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
                                 value="{{ old('numero_plaza') }}" required>
                         </div>
-
                         <!-- Jornada Laboral -->
                         <div class="flex flex-1">
                             <label for="jornada_laboral"
@@ -191,22 +181,18 @@
                                 </option>
                             </select>
                         </div>
-
                         <!-- Otra Jornada Laboral -->
                         <div class="flex flex-1">
-                            <label for="semana_otro"
+                            <label for="otra_jornada"
                                 class="flex items-center justify-center w-40 bg-gray-200 border border-gray-300 text-gray-950 font-bold rounded-l-lg p-2">
                                 Otra Jornada:
                             </label>
-                            <input type="text" name="semana_otro" id="semana_otro"
+                            <input type="text" name="otra_jornada" id="otra_jornada"
                                 class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('semana_otro') }}">
+                                value="{{ old('otra_jornada"') }}">
                         </div>
                     </div>
-
-
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
-
                         <!-- Salario Mínimo -->
                         <div class="flex w-full sm:w-1/2">
                             <label for="salario_minimo"
@@ -217,7 +203,6 @@
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:w-auto rounded-l-none"
                                 value="{{ old('salario_minimo') }}" step="0.01" required>
                         </div>
-
                         <!-- Salario Máximo -->
                         <div class="flex w-full sm:w-1/2">
                             <label for="salario_maximo"
@@ -228,7 +213,6 @@
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:w-auto rounded-l-none"
                                 value="{{ old('salario_maximo') }}" step="0.01" required>
                         </div>
-
                     </div>
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <!-- Etiqueta -->
@@ -241,8 +225,6 @@
                             class="block w-full sm:flex-grow border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-b sm:rounded-r-lg ">
                         </select>
                     </div>
-
-
                     {{-- ejemplo  --}}
                     <div class="mb-4 flex flex-col space-y-4" x-data="{
                         open: false,
@@ -290,12 +272,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Campo oculto para enviar los valores seleccionados como array -->
                         <template x-for="option in selectedOptions" :key="option.value">
                             <input type="hidden" name="supervisa_a[]" :value="option.value">
                         </template>
-
                         <!-- Tabla para mostrar los seleccionados con fondo -->
                         <div class="w-full mt-4 overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 bg-gray-100 shadow-md">
@@ -328,9 +308,6 @@
                             </table>
                         </div>
                     </div>
-
-                    {{-- final --}}
-
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <label for="comunicacion_interna"
                             class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Comunicación
@@ -376,16 +353,11 @@
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             name="descripcion_especifica" id="descripcion_especifica" rows="2" required>{{ old('descripcion_especifica') }}</textarea>
                     </div>
-                </form>
-                <!-- codigo nuevo-->
-                <form action="{{ route('plan_de_negocio.descripciones.store', $plan_de_negocio) }}" method="POST">
+                    <!-- codigo nuevo-->
                     @csrf
                     <div class="text-center text-white my-4 sm:my-6 ml-4 sm:ml-8 md:ml-16 lg:ml-32">
                         <h1 class="text-3xl md:text-4xl font-bold mx-auto">Perfil de puestos.</h1>
                     </div>
-
-
-
                     <!-- Fila: Forma de pago, Jornada laboral, Otra jornada -->
                     <div class="mb-4 flex flex-col sm:flex-row sm:gap-x-4 gap-y-4">
                         <!-- Forma de pago -->
@@ -406,7 +378,6 @@
                             </select>
                         </div>
                     </div>
-
                     <!-- Fila 1: Estado civil: y Edad: -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
                         <!-- Estado civil: -->
@@ -420,8 +391,6 @@
                                 name="nombre_empresa" id="nombre_empresa" value="{{ old('nombre_empresa') }}"
                                 required>
                         </div>
-
-
                         <!-- Edad: -->
                         <div class="flex w-full sm:w-1/2">
                             <label for="edad"
@@ -433,63 +402,58 @@
                                 required>
                         </div>
                     </div>
-
                     <!-- Fila 2:    Nacionalidad: y Sexo: -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
                         <!--    Nacionalidad:-->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_empresa"
+                            <label for="nacionalidad"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Nacionalidad:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_empresa" id="nombre_empresa" value="{{ old('nombre_empresa') }}"
+                                name="nacionalidad" id="nacionalidad"" value="{{ old('nacionalidad"') }}"
                                 required>
                         </div>
 
                         <!-- Sexo: -->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_puesto"
+                            <label for="sexo"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Sexo:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_puesto" id="nombre_puesto" value="{{ old('nombre_puesto') }}" required>
+                                name="sexo" id="sexo" value="{{ old('sexo') }}" required>
                         </div>
                     </div>
                     <!-- Estatura (si aplica): -->
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="objetivos_puesto"
+                        <label for="estatura"
                             class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
                             Estatura. (si aplica):
                         </label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="objetivos_puesto" id="objetivos_puesto" rows="2" required>{{ old('objetivos_puesto') }}</textarea>
+                            name="estatura" id="estatura" rows="2" required>{{ old('estatura') }}</textarea>
                     </div>
-
                     <!--Antecedentes: -->
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="objetivos_puesto"
+                        <label for="antecedentes"
                             class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
                             Antecedentes:
                         </label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="objetivos_puesto" id="objetivos_puesto" rows="2" required>{{ old('objetivos_puesto') }}</textarea>
+                            name="antecedentes" id="antecedentes" rows="2" required>{{ old('antecedentes') }}</textarea>
                     </div>
-                   
-
                     <!--Experiencia: -->
-
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="habilidades_mentales"
+                        <label for="experiencia"
                             class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Experiencia:</label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
-                            name="habilidades_mentales" id="habilidades_mentales" rows="2" required>{{ old('habilidades_mentales') }}</textarea>
+                            name="experiencia" id="experiencia" rows="2" required>{{ old('experiencia') }}</textarea>
                     </div>
                     <!-- Habilidad física: -->
                     <div class="mb-4 flex flex-col sm:flex-row">
@@ -509,7 +473,6 @@
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
                             name="habilidades_mentales" id="habilidades_mentales" rows="2" required>{{ old('habilidades_mentales') }}</textarea>
                     </div>
-
                     <!-- Botón para guardar -->
                     <div class="flex justify-center">
                         <button type="submit"

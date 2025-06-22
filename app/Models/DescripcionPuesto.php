@@ -15,28 +15,32 @@ class DescripcionPuesto extends Model
         'codigo',
         'unidad_administrativa',
         'nombre_puesto',
-        'descripcion_generica',
-        'descripcion_especifica',
-        'objetivos_puesto',
+        'otros_nombres_puestos',
+        'numero_plaza',
+        'jornada_laboral',
+        'otros_jornada_laboral',
         'salario_minimo',
         'salario_maximo',
-        'jornada_laboral',
-        'numero_plaza',
-        'reporta_a',
-        'supervisa_a',
+        'puesto_superior',
+        'puesto_subornidado',
         'comunicacion_interna',
         'comunicacion_externa',
+        'objetivos_puesto',
+        'descripcion_generica',
+        'descripcion_especifica',
+        'forma_pago',
         'estado_civil',
         'edad',
-        'genero',
-        'requisitos_generales',
+        'nacionalidad',
+        'sexo',
+        'estatura',
+        'antecedentes',
+        'experiencia',
         'habilidades_fisicas',
         'habilidades_mentales',
     ];
     public function sueldomensual()
     {
-        return $this->hasOne(Proyeccion::class,'descripcion_de_puesto_id');
-
+        return $this->hasOne(Proyeccion::class, 'descripcion_de_puesto_id');
     }
-
 }
