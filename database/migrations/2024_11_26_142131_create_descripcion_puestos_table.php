@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nombre_puesto'); // Nombre del puesto
             $table->string('otros_nombres_puestos')->nullable(); // Otros nombres puestos
             $table->integer('numero_plaza'); // Número de plaza
-            $table->string('jornada_laboral'); // Tipo de jornada laboral 
+            $table->string('jornada_laboral'); // Tipo de jornada laboral
             $table->string('otros_jornada_laboral')->nullable(); //otros_jornada_laboral
             $table->decimal('salario_minimo', 10, 2); // Salario mínimo
             $table->decimal('salario_maximo', 10, 2); // Salario máximo
@@ -28,12 +28,12 @@ return new class extends Migration
             $table->json('puesto_subornidado')->nullable();// Quién supervisa este puesto
             $table->text('comunicacion_interna')->nullable(); // Comunicación interna
             $table->text('comunicacion_externa')->nullable(); // Comunicación externa
-            $table->text('objetivos_puesto'); // Objetivos del puesto  
+            $table->text('objetivos_puesto'); // Objetivos del puesto
             $table->text('descripcion_generica'); // Descripción general
             $table->text('descripcion_especifica'); // Descripción específica
             $table->string('forma_pago'); // fomra del pago
             $table->string('estado_civil')->nullable(); // Estado civil del candidato
-            $table->string('edad')->nullable(); // Edad del candidato
+            $table->integer('edad')->nullable(); // Edad del candidato
             $table->string('nacionalidad')->nullable(); // nacionalidad
             $table->string('sexo')->nullable(); // Género del candidato
             $table->string('estatura')->nullable(); // Estatura
