@@ -145,7 +145,7 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto"" required>{{ old('otros_nombres_del_puesto') }}</textarea>
+                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto" required>{{ old('otros_nombres_del_puesto') }}</textarea>
                         </div>
                     </div>
                     <!-- Fila: Número de Plaza, Jornada Laboral, Otra Jornada -->
@@ -216,12 +216,12 @@
                     </div>
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <!-- Etiqueta -->
-                        <label for="reporta_a"
+                        <label for="puesto_superior"
                             class="block w-full sm:w-1/4 border-gray-300 bg-gray-200 font-bold rounded-lg p-2 text-gray-950 text-center sm:text-left sm:rounded-r-none">
                             Puesto inmediato superior:
                         </label>
                         <!-- Select deshabilitado -->
-                        <select name="reporta_a" id="reporta_a" disabled
+                        <select name="puesto_superior" id="puesto_superior" disabled
                             class="block w-full sm:flex-grow border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-b sm:rounded-r-lg ">
                         </select>
                     </div>
@@ -242,7 +242,7 @@
                     }">
                         <!-- Supervisa a -->
                         <div class=" flex flex-col sm:flex-row">
-                            <label for="supervisa_a"
+                            <label for="puesto_subornidado"
                                 class="block w-full sm:w-1/4 border-gray-300 bg-gray-200 font-bold rounded-lg p-2 text-gray-950 text-center sm:text-left sm:rounded-r-none">
                                 Puesto subordinado:
                             </label>
@@ -274,7 +274,7 @@
                         </div>
                         <!-- Campo oculto para enviar los valores seleccionados como array -->
                         <template x-for="option in selectedOptions" :key="option.value">
-                            <input type="hidden" name="supervisa_a[]" :value="option.value">
+                            <input type="hidden" name="puesto_subornidado[]" :value="option.value">
                         </template>
                         <!-- Tabla para mostrar los seleccionados con fondo -->
                         <div class="w-full mt-4 overflow-x-auto">
@@ -382,13 +382,13 @@
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
                         <!-- Estado civil: -->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_empresa"
+                            <label for="estado_civil"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Estado civil:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_empresa" id="nombre_empresa" value="{{ old('nombre_empresa') }}"
+                                name="estado_civil" id="estado_civil" value="{{ old('estado_civil') }}"
                                 required>
                         </div>
                         <!-- Edad: -->
@@ -412,8 +412,7 @@
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nacionalidad" id="nacionalidad"" value="{{ old('nacionalidad"') }}"
-                                required>
+                                name="nacionalidad" id="nacionalidad" value="{{ old('nacionalidad"') }}" required>
                         </div>
 
                         <!-- Sexo: -->
@@ -483,7 +482,6 @@
                 </form>
             </main>
         </div>
-
 </body>
 
 </html>

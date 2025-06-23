@@ -127,7 +127,7 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('unidad_administrativa') }}</textarea>
+                                name="unidad_administrativa" id="unidad_administrativa" required>{{ old('unidad_administrativa') }}</textarea>
 
                         </div>
 
@@ -139,19 +139,19 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('nombre_puesto') }}</textarea>
+                                name="nombre_puesto" id="nombre_puesto" required>{{ old('nombre_puesto') }}</textarea>
 
                         </div>
 
                         <!-- Otros nombres del puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
-                            <label for="jornada_laboral"
+                            <label for="otros_nombres_del_puesto"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Otros nombres del puesto:
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="jornada_laboral" id="jornada_laboral" required>{{ old('otros_nombres_del_puesto') }}</textarea>
+                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto" required>{{ old('otros_nombres_del_puesto') }}</textarea>
                         </div>
 
                     </div>
@@ -192,13 +192,13 @@
 
                         <!-- Otra Jornada Laboral -->
                         <div class="flex flex-1">
-                            <label for="semana_otro"
+                            <label for="otra_jornada"
                                 class="flex items-center justify-center w-40 bg-gray-200 border border-gray-300 text-gray-950 font-bold rounded-l-lg p-2">
                                 Otra Jornada:
                             </label>
-                            <input type="text" name="semana_otro" id="semana_otro"
+                            <input type="text" name="otra_jornada" id="otra_jornada"
                                 class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('semana_otro') }}">
+                                value="{{ old('otra_jornada') }}">
                         </div>
                     </div>
 
@@ -229,10 +229,10 @@
 
                     </div>
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="reporta_a"
+                        <label for="puesto_superior"
                             class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">
-                            Reporta a:</label>
-                        <select name="reporta_a" id="reporta_a"
+                            Puesto inmediato superior:</label>
+                        <select name="puesto_superior" id="puesto_superior"
                             class="block w-full sm:flex-grow border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-b sm:rounded-r-lg ">
                             @foreach ($descripcionesEstrategicos as $unidad)
                                 <option value="{{ $unidad->id }}">{{ $unidad->unidad_administrativa }}</option>
@@ -242,12 +242,12 @@
 
 
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="supervisa_a"
+                        <label for="puesto_subornidado"
                             class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Supervisa
                             a:</label>
                         <input disabled type="text"
                             class="w-full bg-gray-200 border border-gray-300 rounded-lg shadow-sm px-4 py-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:rounded-l-none rounded-t-lg "
-                            name="supervisa_a" id="supervisa_a">
+                            name="puesto_subornidado" id="puesto_subornidado">
                     </div>
 
                     {{-- final --}}
@@ -297,15 +297,10 @@
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
                             name="descripcion_especifica" id="descripcion_especifica" rows="2" required>{{ old('descripcion_especifica') }}</textarea>
                     </div>
-                </form>
-                <!-- codigo nuevo-->
-                <form action="{{ route('plan_de_negocio.descripciones.store', $plan_de_negocio) }}" method="POST">
-                    @csrf
+                    <!-- codigo nuevo-->
                     <div class="text-center text-white my-4 sm:my-6 ml-4 sm:ml-8 md:ml-16 lg:ml-32">
                         <h1 class="text-3xl md:text-4xl font-bold mx-auto">Perfil de puestos.</h1>
                     </div>
-
-
                     <!-- Fila 1:Forma de pago-->
                     <div class="mb-4 flex flex-col sm:flex-row sm:gap-x-4 gap-y-4">
                         <!-- Forma de pago -->
@@ -326,22 +321,19 @@
                             </select>
                         </div>
                     </div>
-
                     <!-- Fila 1: Estado civil: y Edad: -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
                         <!-- Estado civil: -->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_empresa"
+                            <label for="estado_civil"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Estado civil:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_empresa" id="nombre_empresa" value="{{ old('nombre_empresa') }}"
+                                name="estado_civil" id="estado_civil" value="{{ old('estado_civil') }}"
                                 required>
                         </div>
-
-
                         <!-- Edad: -->
                         <div class="flex w-full sm:w-1/2">
                             <label for="edad"
@@ -353,63 +345,57 @@
                                 required>
                         </div>
                     </div>
-
                     <!-- Fila 2:    Nacionalidad: y Sexo: -->
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
                         <!--    Nacionalidad:-->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_empresa"
+                            <label for="nacionalidad"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Nacionalidad:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_empresa" id="nombre_empresa" value="{{ old('nombre_empresa') }}"
-                                required>
+                                name="nacionalidad" id="nacionalidad" value="{{ old('nacionalidad') }}" required>
                         </div>
-
                         <!-- Sexo: -->
                         <div class="flex w-full sm:w-1/2">
-                            <label for="nombre_puesto"
+                            <label for="sexo"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Sexo:
                             </label>
                             <input type="text"
                                 class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full rounded-l-none"
-                                name="nombre_puesto" id="nombre_puesto" value="{{ old('nombre_puesto') }}" required>
+                                name="sexo" id="sexo" value="{{ old('sexo') }}" required>
                         </div>
                     </div>
                     <!-- Estatura (si aplica): -->
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="objetivos_puesto"
+                        <label for="estatura"
                             class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
                             Estatura. (si aplica):
                         </label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="objetivos_puesto" id="objetivos_puesto" rows="2" required>{{ old('objetivos_puesto') }}</textarea>
+                            name="estatura" id="estatura" rows="2" required>{{ old('estatura') }}</textarea>
                     </div>
-
                     <!--Antecedentes: -->
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="objetivos_puesto"
+                        <label for="antecedentes"
                             class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
                             Antecedentes:
                         </label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="objetivos_puesto" id="objetivos_puesto" rows="2" required>{{ old('objetivos_puesto') }}</textarea>
+                            name="antecedentes" id="antecedentes" rows="2" required>{{ old('antecedentes') }}</textarea>
                     </div>
                     <!-- Objetivos del Puesto -->
-                    
                     <!--Experiencia: -->
-
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="habilidades_mentales"
+                        <label for="experiencia"
                             class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Experiencia:</label>
                         <textarea
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
-                            name="habilidades_mentales" id="habilidades_mentales" rows="2" required>{{ old('habilidades_mentales') }}</textarea>
+                            name="experiencia" id="experiencia" rows="2" required>{{ old('experiencia') }}</textarea>
                     </div>
                     <!-- Habilidad física: -->
                     <div class="mb-4 flex flex-col sm:flex-row">
@@ -429,7 +415,6 @@
                             class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
                             name="habilidades_mentales" id="habilidades_mentales" rows="2" required>{{ old('habilidades_mentales') }}</textarea>
                     </div>
-
                     <!-- Botón para guardar -->
                     <div class="flex justify-center">
                         <button type="submit"
@@ -440,7 +425,6 @@
                 </form>
             </main>
         </div>
-
 </body>
 
 </html>

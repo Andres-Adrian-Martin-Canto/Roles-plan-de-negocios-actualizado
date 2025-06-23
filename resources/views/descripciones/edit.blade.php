@@ -96,30 +96,45 @@
                     </div>
 
                     <!-- div 2 -->
-                    <div class="mb-4 flex flex-col sm:flex-row gap-4 ">
+                    <div class="mb-4 flex flex-col sm:flex-row gap-4 sm:gap-2">
                         <!-- Unidad Administrativa -->
-                        <div class="flex w-full sm:w-1/2">
+                        <div class="flex flex-col sm:flex-row sm:items-center w-full sm:w-1/3">
                             <label for="unidad_administrativa"
-                                class="border-gray-300 bg-gray-200 rounded-lg p-2 text-gray-950 w-full sm:w-auto rounded-r-none font-bold">
+                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
                                 Unidad Administrativa:
                             </label>
                             <input type="text"
-                                class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:w-auto rounded-l-none"
+                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:border-l-0"
                                 name="unidad_administrativa" id="unidad_administrativa"
                                 value="{{ $descripcion->unidad_administrativa }}" required>
                         </div>
-                        <!-- Nombre de Puesto -->
-                        <div class="flex w-full sm:w-1/2">
+
+                        <!-- Nombre de Puesto (Textarea) -->
+                        <div class="flex flex-col sm:flex-row sm:items-start w-full sm:w-1/3">
                             <label for="nombre_puesto"
-                                class="border-gray-300 bg-gray-200 rounded-lg p-2 text-gray-950 w-full sm:w-auto rounded-r-none font-bold">
+                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
                                 Nombre de Puesto:
                             </label>
+                            <textarea
+                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem] sm:border-l-0"
+                                name="nombre_puesto" id="nombre_puesto" required>{{ old('nombre_puesto', $descripcion->nombre_puesto ?? '') }}</textarea>
+                        </div>
+
+                        <!-- Otros Nombres del Puesto -->
+                        <div class="flex flex-col sm:flex-row sm:items-center w-full sm:w-1/3">
+                            <label for="otros_nombres"
+                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
+                                Otros nombres del puesto:
+                            </label>
                             <input type="text"
-                                class="block flex-grow border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:w-auto rounded-l-none"
-                                name="nombre_puesto" id="nombre_puesto" value="{{ $descripcion->nombre_puesto }}"
-                                required>
+                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:border-l-0"
+                                name="otros_nombres" id="otros_nombres" value="{{ $descripcion->otros_nombres ?? '' }}">
                         </div>
                     </div>
+
+
+
+
                     <!-- Descripción Genérica-->
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <label for="descripcion_generica"
@@ -535,39 +550,39 @@
                                 name="genero" id="genero" value="{{ $descripcion->genero }}" required>
                         </div>
                     </div>
-                        <div class="mb-4 flex flex-col sm:flex-row">
-                            <label for="requisitos_generales"
-                                class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Requisitos
-                                Generales:</label>
-                            <textarea
-                                class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm  focus:border-blue-500 focus:ring-blue-500 "
-                                name="requisitos_generales" id="requisitos_generales" rows="3" required>{{ $descripcion->requisitos_generales }}</textarea>
-                        </div>
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="requisitos_generales"
+                            class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Requisitos
+                            Generales:</label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm  focus:border-blue-500 focus:ring-blue-500 "
+                            name="requisitos_generales" id="requisitos_generales" rows="3" required>{{ $descripcion->requisitos_generales }}</textarea>
+                    </div>
 
-                        <div class="mb-4 flex flex-col sm:flex-row">
-                            <label for="habilidades_fisicas"
-                                class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Habilidades
-                                Físicas:</label>
-                            <textarea
-                                class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm  focus:border-blue-500 focus:ring-blue-500 "
-                                name="habilidades_fisicas" id="habilidades_fisicas" rows="3" required>{{ $descripcion->habilidades_fisicas }}</textarea>
-                        </div>
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="habilidades_fisicas"
+                            class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Habilidades
+                            Físicas:</label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm  focus:border-blue-500 focus:ring-blue-500 "
+                            name="habilidades_fisicas" id="habilidades_fisicas" rows="3" required>{{ $descripcion->habilidades_fisicas }}</textarea>
+                    </div>
 
-                        <div class="mb-4 flex flex-col sm:flex-row">
-                            <label for="habilidades_mentales"
-                                class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Habilidades
-                                Mentales:</label>
-                            <textarea
-                                class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
-                                name="habilidades_mentales" id="habilidades_mentales" rows="3" required>{{ $descripcion->habilidades_mentales }}</textarea>
-                        </div>
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="habilidades_mentales"
+                            class="block sm:w-1/6 border-gray-300  bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 font-bold text-gray-950">Habilidades
+                            Mentales:</label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
+                            name="habilidades_mentales" id="habilidades_mentales" rows="3" required>{{ $descripcion->habilidades_mentales }}</textarea>
+                    </div>
 
-                        <div class="flex justify-center">
-                            <button type="submit"
-                                class="bg-green-700 px-3 py-2 rounded-md text-sm font-bold hover:bg-green-500 transition text-white">
-                                Guardar
-                            </button>
-                        </div>
+                    <div class="flex justify-center">
+                        <button type="submit"
+                            class="bg-green-700 px-3 py-2 rounded-md text-sm font-bold hover:bg-green-500 transition text-white">
+                            Guardar
+                        </button>
+                    </div>
                 </form>
             </main>
         </div>
