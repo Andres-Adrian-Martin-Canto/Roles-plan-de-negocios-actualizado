@@ -243,8 +243,7 @@
 
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <label for="puesto_subornidado"
-                            class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Supervisa
-                            a:</label>
+                            class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Puesto subornidado:</label>
                         <input disabled type="text"
                             class="w-full bg-gray-200 border border-gray-300 rounded-lg shadow-sm px-4 py-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:rounded-l-none rounded-t-lg "
                             name="puesto_subornidado" id="puesto_subornidado">

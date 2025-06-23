@@ -95,77 +95,44 @@
                         </div>
                     </div>
 
-                    <!-- div 2 -->
-                    <div class="mb-4 flex flex-col sm:flex-row gap-4 sm:gap-2">
+                    <!-- div 1 -->
+                    <div class="mb-4 flex flex-col gap-4 sm:flex-row sm:gap-2">
                         <!-- Unidad Administrativa -->
-                        <div class="flex flex-col sm:flex-row sm:items-center w-full sm:w-1/3">
+                        <div class="flex w-full sm:w-1/3">
                             <label for="unidad_administrativa"
-                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
+                                class="flex items-center border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-l-lg w-1/3 sm:w-auto">
                                 Unidad Administrativa:
                             </label>
                             <input type="text"
-                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:border-l-0"
+                                class="border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-r-lg w-2/3 sm:flex-1"
                                 name="unidad_administrativa" id="unidad_administrativa"
                                 value="{{ $descripcion->unidad_administrativa }}" required>
                         </div>
 
-                        <!-- Nombre de Puesto (Textarea) -->
-                        <div class="flex flex-col sm:flex-row sm:items-start w-full sm:w-1/3">
+                        <!-- Nombre de Puesto -->
+                        <div class="flex w-full sm:w-1/3">
                             <label for="nombre_puesto"
-                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
+                                class="flex items-center border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-l-lg w-1/3 sm:w-auto">
                                 Nombre de Puesto:
                             </label>
-                            <textarea
-                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem] sm:border-l-0"
-                                name="nombre_puesto" id="nombre_puesto" required>{{ old('nombre_puesto', $descripcion->nombre_puesto ?? '') }}</textarea>
+                            <input type="text"
+                                class="border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-r-lg w-2/3 sm:flex-1"
+                                name="nombre_puesto" id="nombre_puesto" value="{{ $descripcion->nombre_puesto }}"
+                                required>
                         </div>
 
-                        <!-- Otros Nombres del Puesto -->
-                        <div class="flex flex-col sm:flex-row sm:items-center w-full sm:w-1/3">
+                        <!-- Otros nombres del puesto -->
+                        <div class="flex w-full sm:w-1/3">
                             <label for="otros_nombres"
-                                class="border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none sm:border-r-0 w-full sm:w-auto">
+                                class="flex items-center border border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-l-lg w-1/3 sm:w-auto">
                                 Otros nombres del puesto:
                             </label>
                             <input type="text"
-                                class="border border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full sm:border-l-0"
+                                class="border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-r-lg w-2/3 sm:flex-1"
                                 name="otros_nombres" id="otros_nombres" value="{{ $descripcion->otros_nombres ?? '' }}">
                         </div>
                     </div>
 
-
-
-
-                    <!-- Descripción Genérica-->
-                    <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="descripcion_generica"
-                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">Descripción
-                            Genérica:</label>
-                        <textarea
-                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
-                            name="descripcion_generica" id="descripcion_generica" rows="3" required>{{ $descripcion->descripcion_generica }}</textarea>
-                    </div>
-                    <!-- Descripción Específica -->
-                    <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="descripcion_especifica"
-                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
-                            Descripción Específica:
-                        </label>
-                        <textarea
-                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="descripcion_especifica" id="descripcion_especifica" rows="3" required>{{ $descripcion->descripcion_especifica }}</textarea>
-                    </div>
-
-                    <!-- Objetivos del Puesto -->
-                    <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="objetivos_puesto"
-                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
-                            Objetivos del Puesto:
-                        </label>
-                        <textarea
-                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            name="objetivos_puesto" id="objetivos_puesto" rows="3" required>{{ $descripcion->objetivos_puesto }}</textarea>
-                    </div>
-                    <!-- div 3 -->
                     <div class="mb-4 flex flex-wrap gap-2 justify-center">
                         <!-- Salario Mínimo -->
                         <div class="flex w-full sm:w-1/4">
@@ -201,6 +168,39 @@
                                 required>
                         </div>
                     </div>
+
+
+                    <!-- Descripción Genérica-->
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="descripcion_generica"
+                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">Descripción
+                            Genérica:</label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500 "
+                            name="descripcion_generica" id="descripcion_generica" rows="3" required>{{ $descripcion->descripcion_generica }}</textarea>
+                    </div>
+                    <!-- Descripción Específica -->
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="descripcion_especifica"
+                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
+                            Descripción Específica:
+                        </label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            name="descripcion_especifica" id="descripcion_especifica" rows="3" required>{{ $descripcion->descripcion_especifica }}</textarea>
+                    </div>
+
+                    <!-- Objetivos del Puesto -->
+                    <div class="mb-4 flex flex-col sm:flex-row">
+                        <label for="objetivos_puesto"
+                            class="block sm:w-1/6 border-gray-300 font-bold bg-gray-200 rounded-t-lg sm:rounded-l-lg sm:rounded-none p-2 text-gray-950">
+                            Objetivos del Puesto:
+                        </label>
+                        <textarea
+                            class="block w-full sm:w-5/6 border-gray-300 rounded-b-lg sm:rounded-r-lg sm:rounded-none shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            name="objetivos_puesto" id="objetivos_puesto" rows="3" required>{{ $descripcion->objetivos_puesto }}</textarea>
+                    </div>
+
 
                     <div class="mb-4 flex flex-col sm:flex-row">
                         <!-- Etiqueta -->
