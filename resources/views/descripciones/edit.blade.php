@@ -152,13 +152,13 @@
                                 class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
                                 required>
                                 <option value="">Selecciona una opción</option>
-                                <option value="normal" {{ old('jornada_laboral') == 'normal' ? 'selected' : '' }}>
+                                <option value="normal" {{ $descripcion->jornada_laboral === 'normal' ? 'selected' : '' }}>
                                     Normal (7 días, 1 descanso)
                                 </option>
-                                <option value="inglesa" {{ old('jornada_laboral') == 'inglesa' ? 'selected' : '' }}>
+                                <option value="inglesa" {{ $descripcion->jornada_laboral === 'inglesa' ? 'selected' : '' }}>
                                     Inglesa (5 días, 2 descansos)
                                 </option>
-                                <option value="otros" {{ old('jornada_laboral') == 'otros' ? 'selected' : '' }}>
+                                <option value="otros" {{ $descripcion->jornada_laboral === 'otros' ? 'selected' : '' }}>
                                     Otros
                                 </option>
                             </select>
@@ -204,26 +204,26 @@
                         {{-- TODO: Selector para estrategico --}}
                         <select
                             class="block w-full sm:flex-grow border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-b sm:rounded-r-lg "
-                            id="reporta_a2" name="reporta_a">
+                            id="reporta_a" name="reporta_a">
                             <option value=""></option>
                         </select>
                         {{-- TODO: Selector para tactico --}}
-                        <select class="w-full border-gray-300 rounded-md shadow-sm" id="reporta_a1" name="reporta_a">
+                        <select class="w-full border-gray-300 rounded-md shadow-sm" id="reporta_a" name="reporta_a">
                             <option value="" disabled selected>Seleccione una opción</option>
                             @foreach ($estrategicos as $estrategico)
                                 <option value="{{ $estrategico->id }}"
-                                    {{ $descripcion->reporta_a === $estrategico->id ? 'selected' : '' }}>
+                                    {{ ($descripcion->puesto_superior === $estrategico->id) ? 'selected' : '' }}>
                                     {{ $estrategico->unidad_administrativa }}
                                 </option>
                             @endforeach
                         </select>
                         {{-- TODO: Selector para operativo --}}
-                        <select class="w-full text-gray-950 border-gray-300 rounded-md shadow-sm" id="reporta_adad"
+                        <select class="w-full text-gray-950 border-gray-300 rounded-md shadow-sm" id="reporta_a"
                             name="reporta_a">
                             <option value="" disabled selected>Seleccione una opción</option>
                             @foreach ($tactico as $tacticos)
                                 <option value="{{ $tacticos->id }}"
-                                    {{ $descripcion->reporta_a === $tacticos->id ? 'selected' : '' }}>
+                                    {{ ($descripcion->puesto_superior === $tacticos->id) ? 'selected' : '' }}>
                                     {{ $tacticos->unidad_administrativa }}
                                 </option>
                             @endforeach
@@ -252,7 +252,7 @@
                                                 if (
                                                     in_array(
                                                         $tactico1->id,
-                                                        json_decode($descripcion->supervisa_a, true),
+                                                        json_decode($descripcion->puesto_subornidado, true),
                                                     )
                                                 ) {
                                                     $selectedOptions[] = $tactico1->unidad_administrativa;
@@ -274,7 +274,7 @@
                                                 onclick="toggleOption('{{ $tactico1->id }}', '{{ addslashes($tactico1->unidad_administrativa) }}')">
                                                 <input type="checkbox" id="option-{{ $tactico1->id }}"
                                                     value="{{ $tactico1->id }}" class="mr-2"
-                                                    {{ in_array($tactico1->id, json_decode($descripcion->supervisa_a, true)) ? 'checked' : '' }}
+                                                    {{ in_array($tactico1->id, json_decode($descripcion->puesto_subornidado, true)) ? 'checked' : '' }}
                                                     onclick="handleCheckboxClick(event, '{{ $tactico1->id }}' , '{{ addslashes($tactico1->unidad_administrativa) }}', this)">
                                                 {{ $tactico1->unidad_administrativa }}
                                             </li>
@@ -295,7 +295,7 @@
                                                 if (
                                                     in_array(
                                                         $operativo1->id,
-                                                        json_decode($descripcion->supervisa_a, true),
+                                                        json_decode($descripcion->puesto_subornidado, true),
                                                     )
                                                 ) {
                                                     $selectedOptions[] = $operativo1->unidad_administrativa;
@@ -316,7 +316,7 @@
                                                 onclick="toggleOption('{{ $operativo1->id }}', '{{ addslashes($operativo1->unidad_administrativa) }}')">
                                                 <input type="checkbox" id="option-{{ $operativo1->id }}"
                                                     value="{{ $operativo1->unidad_administrativa }}" class="mr-2"
-                                                    {{ in_array($operativo1->id, json_decode($descripcion->supervisa_a, true)) ? 'checked' : '' }}
+                                                    {{ in_array($operativo1->id, json_decode($descripcion->puesto_subornidado, true)) ? 'checked' : '' }}
                                                     onclick="handleCheckboxClick(event, '{{ $operativo1->id }}' , '{{ addslashes($operativo1->unidad_administrativa) }}', this)">
                                                 {{ $operativo1->unidad_administrativa }}
                                             </li>
@@ -346,14 +346,14 @@
                         {{-- TODO: Campo oculto para enviar los valores seleccionados como array --}}
                         <div id="datosEnviados">
                             @foreach ($tactico as $tactico1)
-                                @if (in_array($tactico1->id, json_decode($descripcion->supervisa_a, true)))
+                                @if (in_array($tactico1->id, json_decode($descripcion->puesto_subornidado, true)))
                                     <input type="hidden" name="supervisa_a[]" value="{{ $tactico1->id }}">
                                 @endif
                             @endforeach
 
                             {{-- TODO: For each para operativos --}}
                             @foreach ($operativo as $operativo1)
-                                @if (in_array($operativo1->id, json_decode($descripcion->supervisa_a, true)))
+                                @if (in_array($operativo1->id, json_decode($descripcion->puesto_subornidado, true)))
                                     <input type="hidden" name="supervisa_a[]" value="{{ $operativo1->id }}">
                                 @endif
                             @endforeach
@@ -372,7 +372,7 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $selectedOptions = json_decode($descripcion->supervisa_a, true);
+                                        $selectedOptions = json_decode($descripcion->puesto_subornidado, true);
                                     @endphp
                                     @if (!empty($selectedOptions))
                                         @foreach ($tactico as $tactico1)
@@ -415,7 +415,7 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $selectedOptions = json_decode($descripcion->supervisa_a, true);
+                                        $selectedOptions = json_decode($descripcion->puesto_subornidado, true);
                                     @endphp
                                     @foreach ($operativo as $operativo1)
                                         @if (in_array($operativo1->id, $selectedOptions))
@@ -515,11 +515,11 @@
                             <select name="forma_pago" id="forma_pago"
                                 class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full">
                                 <option value="">Selecciona una opción</option>
-                                <option value="mensual" {{ old('forma_pago') == 'mensual' ? 'selected' : '' }}>Mensual
+                                <option value="mensual" {{ $descripcion->forma_pago === 'mensual' ? 'selected' : '' }}>Mensual
                                 </option>
-                                <option value="quincenal" {{ old('forma_pago') == 'quincenal' ? 'selected' : '' }}>
+                                <option value="quincenal" {{ $descripcion->forma_pago === 'quincenal' ? 'selected' : '' }}>
                                     Quincenal</option>
-                                <option value="semanal" {{ old('forma_pago') == 'semanal' ? 'selected' : '' }}>Semanal
+                                <option value="semanal" {{ $descripcion->forma_pago === 'semanal' ? 'selected' : '' }}>Semanal
                                 </option>
                             </select>
                         </div>
