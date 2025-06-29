@@ -145,13 +145,13 @@
 
                         <!-- Otros nombres del puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
-                            <label for="otros_nombres_del_puesto"
+                            <label for="otros_nombres_puestos"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Otros nombres del puesto:
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto" required>{{ old('otros_nombres_del_puesto') }}</textarea>
+                                name="otros_nombres_puestos" id="otros_nombres_puestos" required>{{ old('otros_nombres_puestos') }}</textarea>
                         </div>
 
                     </div>
