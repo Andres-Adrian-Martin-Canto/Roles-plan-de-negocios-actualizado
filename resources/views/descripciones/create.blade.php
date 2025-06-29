@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Descripción de Puesto</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js','resources/js/descripcion-puesto/create/index.js'])
 </head>
 
 <body class="bg-gray-600">
@@ -139,13 +139,13 @@
                         </div>
                         <!-- Otros nombres del puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
-                            <label for="otros_nombres_del_puesto"
+                            <label for="otros_nombres_puestos"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Otros nombres del puesto:
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto" required>{{ old('otros_nombres_del_puesto') }}</textarea>
+                                name="otros_nombres_puestos" id="otros_nombres_puestos" required>{{ old('otros_nombres_puestos') }}</textarea>
                         </div>
                     </div>
                     <!-- Fila: Número de Plaza, Jornada Laboral, Otra Jornada -->
@@ -183,13 +183,13 @@
                         </div>
                         <!-- Otra Jornada Laboral -->
                         <div class="flex flex-1">
-                            <label for="otra_jornada"
+                            <label for="otros_jornada_laboral"
                                 class="flex items-center justify-center w-40 bg-gray-200 border border-gray-300 text-gray-950 font-bold rounded-l-lg p-2">
                                 Otra Jornada:
                             </label>
-                            <input type="text" name="otra_jornada" id="otra_jornada"
-                                class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('otra_jornada"') }}">
+                            <input type="text" name="otros_jornada_laboral" id="otros_jornada_laboral"
+                                class="border bg-[#B8BABE] border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
+                                value="{{ old('otros_jornada_laboral') }}" disabled>
                         </div>
                     </div>
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
