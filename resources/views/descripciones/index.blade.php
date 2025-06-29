@@ -89,6 +89,10 @@
                                     Nombre de Puesto.</th>
                                 <th class="px-4 py-2 border border-black text-white"
                                     style="text-align: center; vertical-align: middle;">
+                                    Vista.
+                                </th>
+                                <th class="px-4 py-2 border border-black text-white"
+                                    style="text-align: center; vertical-align: middle;">
                                     Editar.
                                 </th>
                                 <th class="px-4 py-2 border border-black  text-white"
@@ -117,10 +121,17 @@
                                     <td class="px-4 py-2 border border-black "
                                         style="text-align: center; vertical-align: middle;">
                                         <a href="{{ route('plan_de_negocio.descripciones.edit', [$plan_de_negocio, $descripcion->id]) }}"
+                                            class="bg-green-700 text-white  px-3 py-1 rounded-md text-sm font-bold hover:bg-green-500 transition">
+                                            Vista
+                                        </a>
+
+                                    </td>
+                                    <td class="px-4 py-2 border border-black "
+                                        style="text-align: center; vertical-align: middle;">
+                                        <a href="{{ route('plan_de_negocio.descripciones.edit', [$plan_de_negocio, $descripcion->id]) }}"
                                             class="bg-orange-700 text-white  px-3 py-1 rounded-md text-sm font-bold hover:bg-orange-500 transition">
                                             Editar
                                         </a>
-
                                     </td>
                                     <td class="px-4 py-2 border border-black"
                                         style="text-align: center; vertical-align: middle;">

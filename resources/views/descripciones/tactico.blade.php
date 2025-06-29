@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Descripción de Puesto</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js','resources/js/descripcion-puesto/create/index.js'])
 </head>
 
 <body class="bg-gray-600">
@@ -197,8 +197,8 @@
                                 Otra Jornada:
                             </label>
                             <input type="text" name="otra_jornada" id="otra_jornada"
-                                class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('otra_jornada') }}">
+                                class="border bg-[#B8BABE] border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
+                                value="{{ old('otra_jornada') }}" disabled>
                         </div>
                     </div>
 
@@ -259,7 +259,7 @@
                         }
                     }">
                         <div class=" flex flex-col sm:flex-row">
-                            <label for="puesto_subornidado"
+                            <label for="puesto_subordinado"
                                 class="block w-full sm:w-1/4 border-gray-300 bg-gray-200 font-bold rounded-lg p-2 text-gray-950 text-center sm:text-left sm:rounded-r-none">
                                 Puesto subordinado:
                             </label>
@@ -294,7 +294,7 @@
 
                         <!-- Campo oculto para enviar los valores seleccionados como array -->
                         <template x-for="option in selectedOptions" :key="option.value">
-                            <input type="hidden" name="puesto_subornidado[]" :value="option.value">
+                            <input type="hidden" name="puesto_subordinado[]" :value="option.value">
                         </template>
 
                         <!-- Tabla para mostrar los seleccionados con fondo -->

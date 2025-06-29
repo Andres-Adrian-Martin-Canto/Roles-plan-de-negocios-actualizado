@@ -25,7 +25,7 @@ return new class extends Migration
             $table->decimal('salario_minimo', 10, 2); // Salario mínimo
             $table->decimal('salario_maximo', 10, 2); // Salario máximo
             $table->integer('puesto_superior')->nullable(); // Quién reporta a este puesto
-            $table->json('puesto_subornidado')->nullable();// Quién supervisa este puesto
+            $table->json('puesto_subordinado')->nullable();// Quién supervisa este puesto
             $table->text('comunicacion_interna')->nullable(); // Comunicación interna
             $table->text('comunicacion_externa')->nullable(); // Comunicación externa
             $table->text('objetivos_puesto'); // Objetivos del puesto

@@ -22,7 +22,7 @@ class DescripcionPuesto extends Model
         'salario_minimo',
         'salario_maximo',
         'puesto_superior',
-        'puesto_subornidado',
+        'puesto_subordinado',
         'comunicacion_interna',
         'comunicacion_externa',
         'objetivos_puesto',

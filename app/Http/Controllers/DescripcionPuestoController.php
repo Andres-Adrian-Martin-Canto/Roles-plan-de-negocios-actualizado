@@ -56,7 +56,7 @@ class DescripcionPuestoController extends Controller
                 'salario_minimo' => 'required|numeric',
                 'salario_maximo' => 'required|numeric',
                 'puesto_superior' => 'nullable|integer|max:255',
-                'puesto_subornidado' => 'nullable|array',
+                'puesto_subordinado' => 'nullable|array',
                 'comunicacion_interna' => 'nullable|string|max:255',
                 'comunicacion_externa' => 'nullable|string|max:255',
                 'objetivos_puesto' => 'required|string',
@@ -74,10 +74,10 @@ class DescripcionPuestoController extends Controller
                 'habilidades_mentales' => 'nullable|string|max:255',
             ]);
 
-            if (isset($validatedData['puesto_subornidado'])) {
-                $validatedData['puesto_subornidado'] = json_encode($validatedData['puesto_subornidado']);
+            if (isset($validatedData['puesto_subordinado'])) {
+                $validatedData['puesto_subordinado'] = json_encode($validatedData['puesto_subordinado']);
             } else {
-                $validatedData['puesto_subornidado'] = json_encode([]);
+                $validatedData['puesto_subordinado'] = json_encode([]);
             }
 
             // Agregar el ID del plan de negocio
@@ -147,7 +147,7 @@ class DescripcionPuestoController extends Controller
             'salario_minimo' => 'required|numeric',
             'salario_maximo' => 'required|numeric',
             'puesto_superior' => 'nullable|integer|max:255',
-            'puesto_subornidado' => 'nullable|array',
+            'puesto_subordinado' => 'nullable|array',
             'comunicacion_interna' => 'nullable|string|max:255',
             'comunicacion_externa' => 'nullable|string|max:255',
             'objetivos_puesto' => 'required|string',
@@ -167,10 +167,10 @@ class DescripcionPuestoController extends Controller
             'codigo.unique' => 'El código ya está en uso. Por favor, elija otro código.',
         ]);
 
-        if (isset($validatedData['puesto_subornidado'])) {
-            $validatedData['puesto_subornidado'] = json_encode($validatedData['puesto_subornidado']);
+        if (isset($validatedData['puesto_subordinado'])) {
+            $validatedData['puesto_subordinado'] = json_encode($validatedData['puesto_subordinado']);
         } else {
-            $validatedData['puesto_subornidado'] = json_encode([]);
+            $validatedData['puesto_subordinado'] = json_encode([]);
         }
 
         $descripcion->update($validatedData);

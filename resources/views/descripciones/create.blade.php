@@ -242,7 +242,7 @@
                     }">
                         <!-- Supervisa a -->
                         <div class=" flex flex-col sm:flex-row">
-                            <label for="puesto_subornidado"
+                            <label for="puesto_subordinado"
                                 class="block w-full sm:w-1/4 border-gray-300 bg-gray-200 font-bold rounded-lg p-2 text-gray-950 text-center sm:text-left sm:rounded-r-none">
                                 Puesto subordinado:
                             </label>
@@ -274,7 +274,7 @@
                         </div>
                         <!-- Campo oculto para enviar los valores seleccionados como array -->
                         <template x-for="option in selectedOptions" :key="option.value">
-                            <input type="hidden" name="puesto_subornidado[]" :value="option.value">
+                            <input type="hidden" name="puesto_subordinado[]" :value="option.value">
                         </template>
                         <!-- Tabla para mostrar los seleccionados con fondo -->
                         <div class="w-full mt-4 overflow-x-auto">

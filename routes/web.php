@@ -133,6 +133,9 @@ Route::middleware('auth')->group(function () {
             'plan_de_negocio.proyeccionsueldocincoanios' => ProyeccionCincoAniosController::class
 
         ]);
+    Route::get('/plan_de_negocio/{plan_de_negocio}/vistanueva', function () {
+    return view('descripciones.vista');
+    });
         Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
             ->name('plan_de_negocio.proyecciones.resumen');
         //Route::resource('organigramas', OrganigramaController::class);

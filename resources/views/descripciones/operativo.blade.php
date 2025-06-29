@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Descripción de Puesto</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/cerrarVentanaMensaje.js', 'resources/js/descripcion-puesto/create/index.js'])
 </head>
 
 <body class="bg-gray-600">
@@ -197,8 +197,8 @@
                                 Otra Jornada:
                             </label>
                             <input type="text" name="otra_jornada" id="otra_jornada"
-                                class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('otra_jornada') }}">
+                                class="border bg-[#B8BABE] border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
+                                value="{{ old('otra_jornada') }}" disabled>
                         </div>
                     </div>
 
@@ -242,11 +242,11 @@
 
 
                     <div class="mb-4 flex flex-col sm:flex-row">
-                        <label for="puesto_subornidado"
-                            class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Puesto subornidado:</label>
+                        <label for="puesto_subordinado"
+                            class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Puesto subordinado:</label>
                         <input disabled type="text"
                             class="w-full bg-gray-200 border border-gray-300 rounded-lg shadow-sm px-4 py-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:rounded-l-none rounded-t-lg "
-                            name="puesto_subornidado" id="puesto_subornidado">
+                            name="puesto_subordinado" id="puesto_subordinado">
                     </div>
 
                     {{-- final --}}
