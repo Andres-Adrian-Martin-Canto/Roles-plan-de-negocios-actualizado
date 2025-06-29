@@ -59,8 +59,8 @@ use App\Http\Controllers\flujoEfectivoCincoAniosController;
 use App\Http\Controllers\gastos_articulos_ventasController;
 
 use App\Http\Controllers\NodoController;
-
-
+use App\Models\DescripcionPuesto;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/plan_de_negocio/{plan_de_negocio}/estudio/{estudio}/pdf', [EstudioController::class, 'pdf'])->name('pdf');
 
-    Route::group(['middleware' => 'disciple'], function() {
+    Route::group(['middleware' => 'disciple'], function () {
         Route::resources([
             'plan_de_negocio' => PlanDeNegocioController::class,
             'plan_de_negocio.generalidades' => GeneralidadesController::class,
@@ -133,9 +133,22 @@ Route::middleware('auth')->group(function () {
             'plan_de_negocio.proyeccionsueldocincoanios' => ProyeccionCincoAniosController::class
 
         ]);
-    Route::get('/plan_de_negocio/{plan_de_negocio}/vistanueva', function () {
-    return view('descripciones.vista');
-    });
+
+        // TODO: Ruta para ver la descripcion de puesto
+        Route::get('/plan_de_negocio/{plan_de_negocio}/impresionDescripcionPuesto/{descripcion_puesto}', function ($plan_de_negocio, $descripcion_puesto) {
+            $descripcion = DescripcionPuesto::findOrFail($descripcion_puesto);
+            // Obtener los IDs de puestos subordinados (puede ser null o array)
+            $subordinadosIds = is_array($descripcion->puesto_subordinado) ? $descripcion->puesto_subordinado : (is_null($descripcion->puesto_subordinado) ? [] : json_decode($descripcion->puesto_subordinado, true));
+            // Buscar los nombres de los puestos subordinados
+            $subordinadosNombres = !empty($subordinadosIds) ? DescripcionPuesto::whereIn('id', $subordinadosIds)->pluck('unidad_administrativa')->toArray() : [];
+            // Reemplazar el array de IDs por los nombres
+            $descripcion->puesto_subordinado = $subordinadosNombres;
+            return view('descripciones.vista', [
+            'plan_de_negocio' => $plan_de_negocio,
+            'descripcion' => $descripcion
+            ]);
+        })->name('plan_de_negocio.impresionDescripcionPuesto');
+
         Route::get('/plan-de-negocio/{plan_de_negocio}/proyecciones/resumen', [App\Http\Controllers\ProyeccionController::class, 'resumen'])
             ->name('plan_de_negocio.proyecciones.resumen');
         //Route::resource('organigramas', OrganigramaController::class);
@@ -161,13 +174,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/nodos/{id}', [NodoController::class, 'destroy']);
         Route::match(['GET', 'POST'], '/guardar-organigrama', [NodoController::class, 'guardarOrganigrama']);
         Route::put('/nodos/{id}', [NodoController::class, 'update']);
-        Route::post('/upload-photo/{id}', [NodoController::class, 'uploadPhoto'])->name('nodos.uploadPhoto');    });
+        Route::post('/upload-photo/{id}', [NodoController::class, 'uploadPhoto'])->name('nodos.uploadPhoto');
+    });
 
 
 
 
 
-    Route::group(['middleware' => 'admin'], function() {
+    Route::group(['middleware' => 'admin'], function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
         Route::get('/admin_grupos_de_trabajo/todos', [GruposDeTrabajoController::class, 'index'])->name('grupos_admin');

@@ -145,7 +145,7 @@
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="otros_nombres_puestos" id="otros_nombres_puestos" required>{{ old('otros_nombres_puestos') }}</textarea>
+                                name="otros_nombres_puestos" id="otros_nombres_puestos" >{{ old('otros_nombres_puestos') }}</textarea>
                         </div>
                     </div>
                     <!-- Fila: Número de Plaza, Jornada Laboral, Otra Jornada -->

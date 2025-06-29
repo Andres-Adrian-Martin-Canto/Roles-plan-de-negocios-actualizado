@@ -1,4 +1,4 @@
-const otrosJornada = document.querySelector('#otros_jornada_laboral');
+const otrosJornada = document.querySelector('#otra_jornada');
 const selectorJornada = document.querySelector('#jornada_laboral');
 
 const modificarSelectorJornada = () => {

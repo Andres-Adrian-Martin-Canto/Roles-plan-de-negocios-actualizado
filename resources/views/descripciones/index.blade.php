@@ -120,11 +120,10 @@
                                     </td>
                                     <td class="px-4 py-2 border border-black "
                                         style="text-align: center; vertical-align: middle;">
-                                        <a href="{{ route('plan_de_negocio.descripciones.edit', [$plan_de_negocio, $descripcion->id]) }}"
-                                            class="bg-green-700 text-white  px-3 py-1 rounded-md text-sm font-bold hover:bg-green-500 transition">
+                                        <a href="{{ route('plan_de_negocio.impresionDescripcionPuesto', ['plan_de_negocio' => $plan_de_negocio, 'descripcion_puesto' => $descripcion->id]) }}"
+                                            class="bg-green-700 text-white px-3 py-1 rounded-md text-sm font-bold hover:bg-green-500 transition">
                                             Vista
                                         </a>
-
                                     </td>
                                     <td class="px-4 py-2 border border-black "
                                         style="text-align: center; vertical-align: middle;">
