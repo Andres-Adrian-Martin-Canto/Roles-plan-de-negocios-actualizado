@@ -192,13 +192,13 @@
 
                         <!-- Otra Jornada Laboral -->
                         <div class="flex flex-1">
-                            <label for="otra_jornada"
+                            <label for="otros_jornada_laboral"
                                 class="flex items-center justify-center w-40 bg-gray-200 border border-gray-300 text-gray-950 font-bold rounded-l-lg p-2">
                                 Otra Jornada:
                             </label>
-                            <input type="text" name="otra_jornada" id="otra_jornada"
+                            <input type="text" name="otros_jornada_laboral" id="otros_jornada_laboral"
                                 class="border bg-[#B8BABE] border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ old('otra_jornada') }}" disabled>
+                                value="{{ old('otros_jornada_laboral') }}" disabled>
                         </div>
                     </div>
 
