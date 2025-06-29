@@ -135,7 +135,6 @@ class DescripcionPuestoController extends Controller
     public function update(Request $request, Plan_de_negocio $plan_de_negocio, $id)
     {
         $descripcion = DescripcionPuesto::findOrFail($id);
-        Log::info($request->all());
         $validatedData = $request->validate([
             'nivel' => 'required|string',
             'codigo' => 'required|string|max:255|unique:descripcion_puestos,codigo,' . $descripcion->id,
