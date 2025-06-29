@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Descripción de Puesto</title>
-    @vite(['resources/css/app.css', 'resources/js/editarDescripcionPuesto.js', 'resources/js/cerrarVentanaMensaje.js'])
+    @vite(['resources/css/app.css', 'resources/js/editarDescripcionPuesto.js', 'resources/js/cerrarVentanaMensaje.js','resources/js/descripcion-puesto/create/index.js'])
 </head>
 
 <body class="bg-gray-600">
@@ -120,13 +120,13 @@
 
                         <!-- Otros nombres del puesto -->
                         <div class="flex flex-col sm:flex-row w-full sm:w-1/3">
-                            <label for="otros_nombres_del_puesto"
+                            <label for="otros_nombres_puestos"
                                 class="border-gray-300 bg-gray-200 p-2 text-gray-950 font-bold rounded-t sm:rounded-l-lg sm:rounded-tr-none">
                                 Otros nombres del puesto:
                             </label>
                             <textarea
                                 class="border-gray-300 rounded-b sm:rounded-r-lg sm:rounded-bl-none shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full resize-y min-h-[2.5rem]"
-                                name="otros_nombres_del_puesto" id="otros_nombres_del_puesto" required>{{ old('otros_nombres_del_puesto', $descripcion->otros_nombres_del_puesto ?? '') }}</textarea>
+                                name="otros_nombres_puestos" id="otros_nombres_puestos" >{{ old('otros_nombres_puestos', $descripcion->otros_nombres_puestos ?? '') }}</textarea>
                         </div>
                     </div>
 
@@ -165,13 +165,13 @@
                         </div>
                         <!-- Otra Jornada Laboral -->
                         <div class="flex flex-1">
-                            <label for="otra_jornada"
+                            <label for="otros_jornada_laboral"
                                 class="flex items-center justify-center w-40 bg-gray-200 border border-gray-300 text-gray-950 font-bold rounded-l-lg p-2">
                                 Otra Jornada:
                             </label>
-                            <input type="text" name="otra_jornada" id="otra_jornada"
-                                class="border border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
-                                value="{{ $descripcion->otra_jornada }}">
+                            <input type="text" name="otros_jornada_laboral" id="otros_jornada_laboral"
+                                class="border bg-[#B8BABE] border-gray-300 rounded-r-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 w-full p-2"
+                                value="{{ $descripcion->otros_jornada_laboral }}" disabled>
                         </div>
                     </div>
                     <div class="mb-4 flex flex-col sm:flex-row gap-4">
@@ -198,17 +198,17 @@
                     </div>
                     {{-- TODO: Selectores para reportar a --}}
                     <div class="mb-4 flex flex-col sm:flex-row" id="reporta">
-                        <label for="reporta_a"
+                        <label for="puesto_superior"
                             class="block w-full sm:w-1/6 border-gray-300 bg-gray-200 p-2 font-bold text-gray-950  sm:text-left rounded-t sm:rounded-l-lg rounded-r-none">Puesto
                             inmediato superior:</label>
                         {{-- TODO: Selector para estrategico --}}
                         <select
                             class="block w-full sm:flex-grow border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 rounded-b sm:rounded-r-lg "
-                            id="reporta_a" name="reporta_a">
+                            id="puesto_superior" name="puesto_superior">
                             <option value=""></option>
                         </select>
                         {{-- TODO: Selector para tactico --}}
-                        <select class="w-full border-gray-300 rounded-md shadow-sm" id="reporta_a" name="reporta_a">
+                        <select class="w-full border-gray-300 rounded-md shadow-sm" id="puesto_superior" name="puesto_superior">
                             <option value="" disabled selected>Seleccione una opción</option>
                             @foreach ($estrategicos as $estrategico)
                                 <option value="{{ $estrategico->id }}"
@@ -218,8 +218,8 @@
                             @endforeach
                         </select>
                         {{-- TODO: Selector para operativo --}}
-                        <select class="w-full text-gray-950 border-gray-300 rounded-md shadow-sm" id="reporta_a"
-                            name="reporta_a">
+                        <select class="w-full text-gray-950 border-gray-300 rounded-md shadow-sm" id="puesto_superior"
+                            name="puesto_superior">
                             <option value="" disabled selected>Seleccione una opción</option>
                             @foreach ($tactico as $tacticos)
                                 <option value="{{ $tacticos->id }}"
@@ -235,7 +235,7 @@
                         {{-- TODO: Div donde esta el checkbox --}}
                         <div class=" flex flex-col sm:flex-row">
                             {{-- TODO: Mensaje de supervisa_a --}}
-                            <label for="supervisa_a"
+                            <label for="puesto_subornidado"
                                 class="block w-full sm:w-1/4  border-gray-300 bg-gray-200 font-bold rounded-lg p-2 text-gray-950 text-center sm:text-left sm:rounded-r-none">
                                 Puesto subordinado:
                             </label>
@@ -347,14 +347,14 @@
                         <div id="datosEnviados">
                             @foreach ($tactico as $tactico1)
                                 @if (in_array($tactico1->id, json_decode($descripcion->puesto_subornidado, true)))
-                                    <input type="hidden" name="supervisa_a[]" value="{{ $tactico1->id }}">
+                                    <input type="hidden" name="puesto_subornidado[]" value="{{ $tactico1->id }}">
                                 @endif
                             @endforeach
 
                             {{-- TODO: For each para operativos --}}
                             @foreach ($operativo as $operativo1)
                                 @if (in_array($operativo1->id, json_decode($descripcion->puesto_subornidado, true)))
-                                    <input type="hidden" name="supervisa_a[]" value="{{ $operativo1->id }}">
+                                    <input type="hidden" name="puesto_subornidado[]" value="{{ $operativo1->id }}">
                                 @endif
                             @endforeach
                         </div>
@@ -391,12 +391,13 @@
                                             @endif
                                         @endforeach
                                     @else
+                                        {{-- !!! CHECARLO PORQUE SALE ESTE Y EL OTRO.
                                         <tr>
                                             <td colspan="2"
                                                 class="border border-gray-300 px-4 py-2  text-gray-500 text-center">
                                                 No hay datos
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     @endif
                                 </tbody>
                             </table>

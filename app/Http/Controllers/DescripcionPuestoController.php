@@ -108,18 +108,20 @@ class DescripcionPuestoController extends Controller
     public function edit(Plan_de_negocio $plan_de_negocio, $id)
     {
         $descripcion = DescripcionPuesto::findOrFail($id);
-        // quitar el dato actual dependiendo su nivel, ejemplo si es tactico cuando haga la busqueda no me tragia el id actual del que se esta editando
-        // Obtener los niveles supervisados dinámicamente
+        // Excluir el registro actual según su nivel para no traer el id actual del que se está editando
         $estrategicos = $plan_de_negocio->descripcionpuesto()
             ->where('nivel', 'estrategico')
+            ->where('id', '!=', $descripcion->id)
             ->select('id', 'unidad_administrativa')
             ->get();
         $tactico = $plan_de_negocio->descripcionpuesto()
             ->where('nivel', 'tactico')
+            ->where('id', '!=', $descripcion->id)
             ->select('id', 'unidad_administrativa')
             ->get();
         $operativo = $plan_de_negocio->descripcionpuesto()
             ->where('nivel', 'operativo')
+            ->where('id', '!=', $descripcion->id)
             ->select('id', 'unidad_administrativa')
             ->get();
 
@@ -133,36 +135,43 @@ class DescripcionPuestoController extends Controller
     public function update(Request $request, Plan_de_negocio $plan_de_negocio, $id)
     {
         $descripcion = DescripcionPuesto::findOrFail($id);
+        Log::info($request->all());
         $validatedData = $request->validate([
             'nivel' => 'required|string',
             'codigo' => 'required|string|max:255|unique:descripcion_puestos,codigo,' . $descripcion->id,
             'unidad_administrativa' => 'required|string|max:255',
             'nombre_puesto' => 'required|string|max:255',
-            'descripcion_generica' => 'required|string',
-            'descripcion_especifica' => 'required|string',
-            'objetivos_puesto' => 'required|string',
+            'otros_nombres_puestos' => 'nullable|string|max:255',
+            'numero_plaza' => 'required|integer',
+            'jornada_laboral' => 'required|string|max:255',
+            'otros_jornada_laboral' => 'nullable|string|max:255',
             'salario_minimo' => 'required|numeric',
             'salario_maximo' => 'required|numeric',
-            'jornada_laboral' => 'required|string',
-            'numero_plaza' => 'required|integer',
-            'reporta_a' => 'nullable|string',
-            'supervisa_a' => 'nullable|array',
-            'comunicacion_interna' => 'nullable|string',
-            'comunicacion_externa' => 'nullable|string',
-            'estado_civil' => 'nullable|string',
-            'edad' => 'nullable|string',
-            'genero' => 'nullable|string',
-            'requisitos_generales' => 'nullable|string',
-            'habilidades_fisicas' => 'nullable|string',
-            'habilidades_mentales' => 'nullable|string',
+            'puesto_superior' => 'nullable|integer|max:255',
+            'puesto_subornidado' => 'nullable|array',
+            'comunicacion_interna' => 'nullable|string|max:255',
+            'comunicacion_externa' => 'nullable|string|max:255',
+            'objetivos_puesto' => 'required|string',
+            'descripcion_generica' => 'required|string',
+            'descripcion_especifica' => 'required|string',
+            'forma_pago' => 'nullable|string|max:255',
+            'estado_civil' => 'nullable|string|max:255',
+            'edad' => 'nullable|numeric',
+            'nacionalidad' => 'nullable|string|max:255',
+            'sexo' => 'nullable|string|max:255',
+            'estatura' => 'nullable|string|max:255',
+            'antecedentes' => 'nullable|string|max:255',
+            'experiencia' => 'nullable|string|max:255',
+            'habilidades_fisicas' => 'nullable|string|max:255',
+            'habilidades_mentales' => 'nullable|string|max:255',
         ], [
             'codigo.unique' => 'El código ya está en uso. Por favor, elija otro código.',
         ]);
 
-        if (isset($validatedData['supervisa_a'])) {
-            $validatedData['supervisa_a'] = json_encode($validatedData['supervisa_a']);
+        if (isset($validatedData['puesto_subornidado'])) {
+            $validatedData['puesto_subornidado'] = json_encode($validatedData['puesto_subornidado']);
         } else {
-            $validatedData['supervisa_a'] = json_encode([]);
+            $validatedData['puesto_subornidado'] = json_encode([]);
         }
 
         $descripcion->update($validatedData);

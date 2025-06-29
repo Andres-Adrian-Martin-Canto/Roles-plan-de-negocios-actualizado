@@ -99,13 +99,13 @@ function toggleOption(id, unidadAdministrativa) {
             nombresSeleccionados.textContent = nombres + ', ' + unidadAdministrativa;
         }
 
-        // TODO: Aqui agregar los datos del input <input type="hidden" name="supervisa_a[]" value="{{ $operativo1->id }}"> al div oculto
+        // TODO: Aqui agregar los datos del input <input type="hidden" name="puesto_subornidado[]" value="{{ $operativo1->id }}"> al div oculto
         // * Crear un input oculto con el id del usuario
         let input = document.createElement('input');
         // * Agregar el tipo hidden al input
         input.type = 'hidden';
         // * Agregar el nombre al input
-        input.name = 'supervisa_a[]';
+        input.name = 'puesto_subornidado[]';
         // * Agregar el valor del id al input
         input.value = id;
         // * Agregar el input al div oculto
