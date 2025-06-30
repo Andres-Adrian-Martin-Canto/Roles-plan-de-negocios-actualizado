@@ -31,10 +31,16 @@ class ProyeccionController extends Controller
 
         $totaldelossueldos = 0;
         foreach ($arraydescripciondepuesto as  $value) {
-            $totaldelossueldos += ($value->sueldomensual)
-                ? $value->sueldomensual->total : $value->salario_maximo;
-            array_push($arraydatos, [$value->id, $value->nombre_puesto, $value->numero_plaza, ($value->sueldomensual)
-                ? $value->sueldomensual->sueldo : $value->salario_maximo, ($value->sueldomensual) ? $value->sueldomensual->id : 0]);
+            $totaldelossueldos += ($value->sueldomensual) ?
+                $value->sueldomensual->total :
+                $value->salario_maximo * $value->numero_plaza;
+            array_push($arraydatos, [
+                $value->id,
+                $value->nombre_puesto,
+                $value->numero_plaza,
+                ($value->sueldomensual) ? $value->sueldomensual->sueldo : $value->salario_maximo,
+                ($value->sueldomensual) ? $value->sueldomensual->id : 0
+            ]);
         }
 
         $ruta = route('plan_de_negocio.proyecciones.store', $plan_de_negocio);
@@ -56,7 +62,7 @@ class ProyeccionController extends Controller
      */
     public function store(Request $request, Plan_de_negocio $plan_de_negocio)
     {
-
+        // !!! SE PODRIA MEJORAR.
         $plan_de_negocio->proyecciondesueldomensual()->delete();
         foreach ($request->all() as $value) {
             Proyeccion::create(
@@ -106,8 +112,8 @@ class ProyeccionController extends Controller
         }
 
         $totalmensual = 0;
-        $totalanual= 0;
-        $totalcincoanios= 0;
+        $totalanual = 0;
+        $totalcincoanios = 0;
         foreach ($sueldos as $value) {
 
             $datosanual = proyecciondesueldoanual::where('proyección_de_sueldos', $value->id)->get();
@@ -119,9 +125,8 @@ class ProyeccionController extends Controller
                 $totalcincoanios += $cincoanios->sueldo_total_anual;
             }
             $totalmensual += $value->total;
-
         }
         // Pasar los datos a la vista
-        return view('proyecciones.resumen', compact('plan_de_negocio', 'totalmensual','totalanual','totalcincoanios'));
+        return view('proyecciones.resumen', compact('plan_de_negocio', 'totalmensual', 'totalanual', 'totalcincoanios'));
     }
 }
