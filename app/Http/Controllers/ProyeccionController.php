@@ -32,7 +32,7 @@ class ProyeccionController extends Controller
         $totaldelossueldos = 0;
         foreach ($arraydescripciondepuesto as  $value) {
             $totaldelossueldos += ($value->sueldomensual)
-                ? $value->sueldomensual->total : $value->salario_maximo * $value->jornada_laboral;
+                ? $value->sueldomensual->total : $value->salario_maximo;
             array_push($arraydatos, [$value->id, $value->nombre_puesto, $value->numero_plaza, ($value->sueldomensual)
                 ? $value->sueldomensual->sueldo : $value->salario_maximo, ($value->sueldomensual) ? $value->sueldomensual->id : 0]);
         }
